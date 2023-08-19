@@ -1,0 +1,37 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>>li=new ArrayList<>();
+        Arrays.sort(nums); 
+        int n=nums.length;
+        int i=0;
+        while(i<n)
+        { 
+            int recent=nums[i];
+            int p=nums[i];
+            int low=i+1;
+            int high=n-1;
+            while(low<high)
+            {
+                int recent_low=nums[low],recent_high=nums[high];
+                boolean lflag=true,hflag=true;
+
+                int target=p+nums[low]+nums[high];
+
+                if(target==0)li.add(Arrays.asList(p,nums[low++],nums[high--]));
+
+                else if(target>0){
+                    high--;
+                    lflag=false;
+                }   
+                else  {
+                    low++;
+                    hflag=false;
+                }
+                while(hflag && high>low && nums[high]==recent_high) high--;
+                while(lflag && low<high && nums[low]==recent_low) low++;
+            }
+            while(i<n && nums[i]==recent)i++;
+        }
+        return li;
+    }
+}

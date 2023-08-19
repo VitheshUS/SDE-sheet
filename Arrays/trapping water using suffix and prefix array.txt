@@ -1,0 +1,22 @@
+class Solution {
+    public int trap(int[] height) {
+        int n=height.length;
+        int[]left=new int[n];
+        int[]right=new int[n];
+        int left_large=0,right_large=0;
+        for(int i=0;i<n;i++)
+        {
+            left_large=Math.max(left_large,height[i]);
+            right_large=Math.max(right_large,height[n-i-1]);
+            left[i]=left_large;
+            right[n-i-1]=right_large;
+        }
+        int count=0;
+        for(int i=0;i<n;i++)
+        {
+            if(height[i]>=left[i] && height[i]>=right[i])continue;
+            count+=Math.min(left[i],right[i])-height[i];
+        }
+        return count;
+    }
+}

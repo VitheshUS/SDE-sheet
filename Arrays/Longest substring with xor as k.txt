@@ -1,0 +1,17 @@
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+        HashMap<Integer,Integer>mp=new HashMap<>();
+        int xor=0;
+        int count=0;
+        for(int a:A)
+        {
+            xor^=a;
+            if(xor==B)count++;
+            int n=xor^B;
+            if(mp.containsKey(n)) count+=mp.get(n);
+            if(mp.containsKey(xor)) mp.put(xor,mp.get(xor)+1);
+            else mp.put(xor,1);
+        }
+        return count;
+    }
+}
