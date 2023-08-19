@@ -1,0 +1,23 @@
+class Solution {
+    public int trap(int[] high) {
+
+        int i=0, j=high.length-1, count=0, left=0, right=0;
+
+        while (i <= j)
+        {
+            if (left <= right)
+            {
+                if (high[i] < left) count += left - high[i];
+                else left = high[i];
+                i++;
+            }
+            else
+            {
+                if (high[j] < right) count += right - high[j];
+                else right = high[j];
+                j--;
+            }  
+        }
+        return count;
+    }
+}
