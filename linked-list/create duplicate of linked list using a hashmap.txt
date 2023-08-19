@@ -1,0 +1,18 @@
+lass Solution {
+    public Node copyRandomList(Node head) {
+        Node root=head;
+        HashMap<Node,Node>map=new HashMap<>();
+        while(head!=null)
+        {
+            Node a=new Node(head.val);
+            map.put(head,a);
+            head=head.next;
+        }
+        for(Map.Entry<Node,Node>e:map.entrySet())
+        {
+            e.getValue().next=map.get(e.getKey().next);
+            e.getValue().random=map.get(e.getKey().random);
+        }
+        return map.get(root);
+    }
+}

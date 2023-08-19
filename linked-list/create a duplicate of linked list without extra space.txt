@@ -1,0 +1,34 @@
+class Solution {
+    public Node copyRandomList(Node head) {
+        if(head==null)return null;
+        Node root=head;
+
+        while(head!=null)
+        {
+            Node a=new Node(head.val);                                      //add extra nodes in between
+            a.next=head.next;
+            head.next=a;
+            head=a.next;
+        }
+
+        Node newhead=root.next;
+        Node root2=newhead;
+        head=root;
+
+        while(head!=null)
+        {
+            head.next.random=head.random==null?null:head.random.next;         //set random of the added nodes 
+            head=head.next.next;
+        }
+
+        head=root;
+        while(head!=null){
+            head.next=head.next.next;
+            newhead.next=(newhead.next==null)?null:newhead.next.next;         //seperate the list
+            head=head.next;
+            newhead=newhead.next;
+        }
+        
+        return root2;
+    }
+}

@@ -1,0 +1,38 @@
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+    ListNode fast=head;
+    ListNode slow=head;
+    ListNode prev=new ListNode();
+    prev.next=head;
+
+    while(fast!=null && fast.next!=null)   //detect the center of the list
+    {
+        fast=fast.next.next;
+        slow=slow.next;
+        prev=prev.next;
+    }
+    
+    if(fast!=null)slow=slow.next;          // handle cases for odd even length list
+    prev.next=null;
+   
+
+    ListNode cur=head;
+    ListNode prev1=null;
+
+    while(head!=null)                      //rotate the list for head to center
+    {
+        head=head.next;
+        cur.next=prev1;
+        prev1=cur;
+        cur=head;
+    }
+    cur=prev1;
+    while(slow!=null && cur!=null)       // now we have to list...compare the two list 
+    {
+        if(slow.val!=cur.val)return false;
+        slow=slow.next;
+        cur=cur.next;
+    }
+    return true;
+    }
+}
