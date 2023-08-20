@@ -1,0 +1,24 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+        int prod=1;
+        int max=nums[0];
+        int neg=1;
+        for(int a:nums)
+        {
+            prod*=a;
+            if(prod<0)
+            {
+                max=Math.max(max,prod/neg);
+                if(neg==1)neg=prod;
+                else neg=Math.max(prod,neg);
+            }
+            else max=Math.max(max,prod);
+
+            if(prod==0){
+                prod=1;
+                neg=1;
+            }
+        }
+        return max;
+    }
+}
