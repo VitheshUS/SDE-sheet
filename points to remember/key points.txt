@@ -1,1 +1,1 @@
-- while calculating for a prime number or the common divisors we should keep in mind that we can run the loop till square root if that number.
+- while calculating for a prime number or the common divisors we should keep in mind that we can run the loop till square root of that number.
