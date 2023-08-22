@@ -1,0 +1,21 @@
+class Solution{
+    static List<Integer> minPartition(int n)
+    {
+     List<Integer>li=new ArrayList<>();
+     int sum=0;
+     int[]nums={ 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000 };
+     int i=nums.length-1;
+     while(i>=0)
+     {
+         if(sum==n)break;
+         int req=n-sum;
+         if(req>=nums[i])
+         {
+             sum+=nums[i];
+             li.add(nums[i]);
+         }
+         else i--;
+     }
+     return li;
+    }
+}

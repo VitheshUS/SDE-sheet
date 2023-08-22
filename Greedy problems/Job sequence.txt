@@ -1,0 +1,45 @@
+class Solution
+{
+    int[] JobScheduling(Job arr[], int n)
+    {
+        int jobs=0,profit=0;
+        compare x=new compare();
+        Arrays.sort(arr,(a,b)->b.profit-a.profit);
+        
+        boolean[] vacant=new boolean[n+1];
+        
+        for(Job j:arr)
+        {
+            if(!vacant[j.deadline])
+            {
+                vacant[j.deadline]=true;
+                profit+=j.profit;
+                jobs++;
+            }
+            else{
+                for(int i=j.deadline-1;i>0;i--)
+                {
+                  if(!vacant[i])
+                  {
+                  vacant[i]=true;
+                  profit+=j.profit;
+                  jobs++;
+                  break;
+                  }  
+                }
+            }
+        }
+        return new int[]{jobs,profit};
+    }
+}
+
+/*
+class Job {
+    int id, profit, deadline;
+    Job(int x, int y, int z){
+        this.id = x;
+        this.deadline = y;
+        this.profit = z; 
+    }
+}
+*/
