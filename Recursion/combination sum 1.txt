@@ -1,0 +1,24 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<Integer>li=new ArrayList<>();
+        List<List<Integer>>al=new ArrayList<>();
+        subset(candidates.length,0,target,0,al,li,candidates);
+        return al;
+        }
+    public void subset(int n,int i,int target,int sum,List<List<Integer>>al,List<Integer>li,int[] can)
+    {
+        if(sum==target){
+            al.add(new ArrayList<>(li));
+            return;
+        }
+        if(sum>target || i>=n)return;
+        for(int j=i;j<n;j++)
+        {
+            li.add(can[j]);
+            sum+=can[j];
+            subset(n,j,target,sum,al,li,can);
+            sum-=can[j];
+            li.remove(li.size()-1);
+        }
+    }
+}

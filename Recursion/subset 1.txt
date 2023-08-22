@@ -1,0 +1,21 @@
+class Solution{
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
+        ArrayList<Integer>ar=new ArrayList<>();
+        subset(N,0,0,ar,arr);
+        return ar;
+    }
+    public void subset(int n,int i,int sum,ArrayList<Integer>ar,ArrayList<Integer>al)
+    {
+        if(i>=n)
+        {
+            ar.add(sum);
+            return;
+        }
+        
+        sum+=al.get(i);
+        subset(n,i+1,sum,ar,al);
+        
+        sum-=al.get(i);
+        subset(n,i+1,sum,ar,al);
+    }
+}
