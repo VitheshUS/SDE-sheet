@@ -1,0 +1,25 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>>al=new ArrayList<>();
+        List<Integer>li=new ArrayList<>();
+        List<Integer>num=new ArrayList<>();
+        for(int a:nums)num.add(a);
+        dfs(nums.length,num,li,al);
+        return al;
+    }
+    public void dfs(int n,List<Integer>num,List<Integer>li,List<List<Integer>>al)
+    {
+        if(li.size()>=n){
+            al.add(new ArrayList<>(li));
+            return;
+        }
+        for(int i=0;i<num.size();i++)
+        {
+          li.add(num.get(i));
+          int dig=num.remove(i);
+          dfs(n,num,li,al);
+          num.add(i,dig);
+          li.remove(li.size()-1);
+        }
+    }
+}

@@ -1,0 +1,28 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>>al=new ArrayList<>();
+        dfs(nums.length,nums,al,0);
+        return al;
+    }
+    public void dfs(int n,int[]nums,List<List<Integer>>al,int i)
+    {
+        if(i>=n){
+        List<Integer>l=new ArrayList<>();
+        for(int a:nums)l.add(a);
+        al.add(l);
+        return;
+        }
+        for(int j=i;j<n;j++)
+        {
+            swap(nums,i,j);
+            dfs(n,nums,al,i+1);
+            swap(nums,i,j);
+        }
+    }
+    public void swap(int[]nums,int i,int j)
+    {
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    }
+}

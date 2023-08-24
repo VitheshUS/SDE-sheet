@@ -1,0 +1,51 @@
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        boolean[][]vis=new boolean[n][n];
+        List<List<String>>al=new ArrayList<>();
+        List<String>li=new ArrayList<>();
+        queen(n,al,li,vis,0);
+        return al;
+    }
+
+    public void queen(int n,List<List<String>>al,List<String>li,boolean[][]vis,int i)
+    {
+        if(li.size()>=n)
+        {
+            al.add(new ArrayList<>(li));
+            return;
+        }
+        if(i>=n)return;
+
+        for(int j=0;j<n;j++)
+        {
+           if(! check(i,j,vis,n) )continue;
+           vis[i][j]=true;
+           String s=makestring(j,n);
+           li.add(s);
+           queen(n,al,li,vis,i+1);
+           li.remove(li.size()-1);
+           vis[i][j]=false;
+        }
+    }
+    public boolean check(int i,int j,boolean[][]vis,int n)
+    {
+        int k=1;
+       while(k<n)
+        {
+            if(i-k>=0 && vis[i-k][j])return false;
+            if(i-k>=0 && j-k>=0 && vis[i-k][j-k])return false;
+            if(i-k>=0 && j+k<n && vis[i-k][j+k])return false;
+            k++;
+        }
+        return true;
+    }
+    public String makestring(int j,int n)
+    {
+        StringBuilder sb=new StringBuilder();
+        int i=0;
+        for(i=0;i<j;i++) sb.append(".");
+        sb.append("Q");
+        while(++i<n)sb.append(".");
+        return sb.toString();
+    }
+}
