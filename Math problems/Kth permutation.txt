@@ -1,0 +1,21 @@
+class Solution {
+    public String getPermutation(int n, int k) {
+        ArrayList<Integer>al=new ArrayList<>();
+        int[]fact=new int[n+1];
+        fact[0]=1;
+        for(int i=1;i<=n;i++){
+            fact[i]=fact[i-1]*i;
+            al.add(i);
+        } 
+        k--;
+        StringBuilder perm=new StringBuilder();
+        while(n!=0)
+        {
+            int first=al.remove(k/fact[n-1]);
+            perm.append(String.valueOf(first));
+            k=k%fact[n-1];
+            n--;
+        }
+        return perm.toString();
+    }
+}
