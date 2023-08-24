@@ -1,0 +1,8 @@
+sum of first n natural numbers
+n(n+1) / 2;
+
+sum of square of first n natural numbers 
+n(n+1)(2n+1) /6;
+
+sum of cube of first n natural numbers
+(n(n+1))^2)/4;

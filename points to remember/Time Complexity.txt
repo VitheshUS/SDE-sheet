@@ -1,0 +1,7 @@
+**************************************************************************************
+
+N Queens time Complexity  n! or exponential;
+we can simply check by drawing a recursion tree for a small chess board.
+The time complexity grows exponentially because we generate all possible permutations.
+
+**************************************************************************************
