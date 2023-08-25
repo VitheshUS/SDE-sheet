@@ -1,0 +1,28 @@
+class solve {
+    
+    public boolean graphColoring(boolean graph[][], int m, int n) {
+
+        int[]col=new int[n];
+        return color(col,graph,m,n,0);
+    }
+    public boolean color(int[]col,boolean[][]graph,int m,int n,int i)
+    {
+        if(i>=n)return true;
+        for(int k=1;k<=m;k++)
+        {
+            if(check(graph,col,i,k))continue;
+            col[i]=k;
+            if(color(col,graph,m,n,i+1)) return true;
+        }
+        return false;
+    }
+    public boolean check(boolean[][]graph,int[]col,int i,int color)  // check for colors
+    {
+        
+        for(int j=0;j<graph.length;j++)
+            if(graph[i][j])
+                if(col[j]==color) return true;
+            
+        return false;
+    }
+}

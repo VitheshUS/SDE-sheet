@@ -1,0 +1,25 @@
+public class Solution {
+	public static ArrayList<String> wordBreak(String s, ArrayList<String> d) {
+		ArrayList<String>li=new ArrayList<>();
+		HashSet<String>dic=new HashSet<>();
+		for(String a:d)dic.add(a);
+		find(li,0,s,dic,s.length(),"");
+		return li;
+	}
+	public static void find(ArrayList<String>li,int i,String s,HashSet<String>dic,int n,String word)
+	{
+		if(i>=n)
+		{
+			li.add(word);
+			return;
+		}
+		String w="";
+		for(int j=i;j<n;j++)
+		{
+			w=w+s.charAt(j);
+			if(dic.contains(w)){
+				find(li,j+1,s,dic,n,word+w+" ");	
+			}
+		}
+	}
+}
