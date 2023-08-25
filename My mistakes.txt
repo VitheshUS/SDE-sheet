@@ -9,3 +9,7 @@
 >Dont let your ego cotroll you...dont hesitate in using visited array while performing a travering problems.
 
 >Dont overthink.
+
+>Getting overexcited after solving...but you could solve it in a better way.
+
+>Unnecessary conditional statements...
