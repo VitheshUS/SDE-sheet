@@ -1,0 +1,11 @@
+>Today i got some problem because i had to strings and had to perform operation on both. In the question it wasnt mentioned that both the string have same size but still i took n=length of first string. I should have taken the length of second String. i was so dumb here. From next time just see this.
+
+>Always check if there is any negative numbers while your are using frequency arrays.
+
+>Just dont randomly put increment or decrement operator randomly ..this matters a lot..No problem if the code looks lengthy. just make it perfect..
+
+>i and j will be a confusion. Because if you put i instead of j or j instead of i then it will surely result in stack overflow..or infinite loop.
+
+>Dont let your ego cotroll you...dont hesitate in using visited array while performing a travering problems.
+
+>Dont overthink.
