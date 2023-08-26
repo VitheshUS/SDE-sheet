@@ -1,0 +1,24 @@
+lass Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String>set=new HashSet<>();
+        for(String a:wordDict)set.add(a);
+        Boolean[]dp=new Boolean[s.length()];
+
+        return dfs(s,0,set,"",s.length(),dp);
+    }
+    public boolean dfs(String s,int i,HashSet<String>dic,String word,int n,Boolean[]dp)
+    {
+        if(i>=n)return true;
+        String w="";
+
+        if(dp[i]!=null)return dp[i];
+
+        for(int j=i;j<n;j++)
+        {
+            w=w+s.charAt(j);
+            if(dic.contains(w))
+            if(dfs(s,j+1,dic,w,n,dp))return dp[j]=true;
+        }
+        return dp[i]=false;
+    }
+}
