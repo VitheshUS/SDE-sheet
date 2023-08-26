@@ -13,3 +13,7 @@
 >Getting overexcited after solving...but you could solve it in a better way.
 
 >Unnecessary conditional statements...
+
+>Do not forget the inbuilt function. just because you solved hard problems where we dont use an inbuilt funstion doesn't mean that you  cant use any inbuilt functions.
+
+>Dont forget which variable to use while performing any operations.
