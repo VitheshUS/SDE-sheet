@@ -1,4 +1,4 @@
->Today i got some problem because i had to strings and had to perform operation on both. In the question it wasnt mentioned that both the string have same size but still i took n=length of first string. I should have taken the length of second String. i was so dumb here. From next time just see this.
+>Today i got some problem because i had two strings and had to perform operation on both. In the question it wasnt mentioned that both the string have same size but still i took n=length of first string. I should have taken the length of second String. i was so dumb here. From next time just see this.
 
 >Always check if there is any negative numbers while your are using frequency arrays.
 
@@ -20,3 +20,5 @@
 
 >While doing binnary search ...if you keep looping condition as low<=high then we should remember that low=mid or high=mid will always result in infinite loop. 
 we can do that if looping condition is low<high
+
+>Correctly check if you have applied conditional operator or not.Dont get lost while colpy pasting the code.
