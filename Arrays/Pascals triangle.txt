@@ -1,0 +1,20 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> sa=new ArrayList<>();
+        for(int i=1;i<=numRows;i++)
+        {
+            sa.add(find_row(i));
+        }
+        return sa;
+}
+public List<Integer> find_row(int n)
+{
+    List<Integer> al=new ArrayList<>();
+    al.add(1);
+    for(int i=1;i<n;i++)
+    {
+        al.add((al.get(al.size()-1)*(n-i))/i);               // Combination formula
+    }
+    return al;
+}
+}
