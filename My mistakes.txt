@@ -17,3 +17,6 @@
 >Do not forget the inbuilt function. just because you solved hard problems where we dont use an inbuilt funstion doesn't mean that you  cant use any inbuilt functions.
 
 >Dont forget which variable to use while performing any operations.
+
+>While doing binnary search ...if you keep looping condition as low<=high then we should remember that low=mid or high=mid will always result in infinite loop. 
+we can do that if looping condition is low<high
