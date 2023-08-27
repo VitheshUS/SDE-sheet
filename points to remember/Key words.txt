@@ -1,3 +1,0 @@
-string builder...
-
-> remove ele from a particular position = sb.deleteCharAt(pos);
