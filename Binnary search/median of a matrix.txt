@@ -1,0 +1,49 @@
+class solution{
+ public void findMedian(int[][] nums,int m,int n)
+{
+int low=Integer.MIN_VALUE;
+int high=Integer.MAX_VALUE;
+int range=(m*n)/2;
+
+    while(low<=high)
+   {
+   int mid=low+(high-low)/2;
+
+   int smaller=findsmaller(int mid,nums,m,n);
+
+   if(smaller<=range)low=mid+1;
+
+   else high=mid-1;
+   }
+
+return low;
+}
+
+
+public int findsmaller(int val,int[][]nums,int m,int n)
+{
+int i=m;
+   while(i<m)
+   {
+   int low=0;
+   int high=n-1;
+
+       while(low<=high)
+       {
+       int mid=(low+high)/2;
+
+       if(nums[i][mid]<=val)low=mid+1;
+       else high=mid-1;
+
+       }
+   count+=low;
+   i++;
+   }
+return count;
+}
+
+
+
+
+
+
