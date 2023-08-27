@@ -1,0 +1,13 @@
+queue
+
+>Queue is implemented using linked list or ArrayDequeue
+
+Queue<Integer>qu=new LinkedList<>();
+
+ADD - qu.add(item) , qu.enqueue();
+
+REMOVE - qu.remove() , qu.poll() , qu.dequeue();
+
+FRONT ELEMENT -qu.peek();
+
+EMPTY OR NOT - qu.isEmpty()
