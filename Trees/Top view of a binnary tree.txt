@@ -1,0 +1,51 @@
+class TreeNode{
+    int pos=0;
+    Node node=null;
+    TreeNode(Node node,int pos)
+    {
+        this.node=node;
+        this.pos=pos;
+    }
+}
+
+
+class Solution
+{
+    static ArrayList<Integer> topView(Node root)
+    {
+        HashMap<Integer,Integer>map=new HashMap<>();
+        Queue<TreeNode>qu=new LinkedList();
+        ArrayList<Integer>al=new ArrayList<>();
+        
+        TreeNode head=new TreeNode(root,0);
+        qu.add(head);
+        
+        while(!qu.isEmpty())
+        {
+            TreeNode cur=qu.poll();
+            Node sub=cur.node;
+            int pos=cur.pos;
+            
+            if(sub.left!=null)
+            {
+                qu.add(new TreeNode(sub.left,pos-1));
+            }
+            if(sub.right!=null)
+            {
+                qu.add(new TreeNode(sub.right,pos+1));
+            }
+            
+            if(!map.containsKey(pos))map.put(pos,sub.data);
+        }
+        ArrayList<Integer>positions=new ArrayList<>();
+        for(Map.Entry<Integer,Integer>a:map.entrySet())
+        {
+            positions.add(a.getKey());
+        }
+        Collections.sort(positions);
+        
+        for(int i:positions) al.add(map.get(i));
+        
+        return al;
+    }
+}

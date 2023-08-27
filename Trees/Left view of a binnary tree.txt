@@ -1,0 +1,16 @@
+class Tree
+{
+    ArrayList<Integer> leftView(Node root)
+    {
+      ArrayList<Integer>al=new ArrayList<>();
+      dfs(root,al,0);
+      return al;
+    }
+    public void dfs(Node root,ArrayList<Integer>al,int pos)
+    {
+        if(root==null)return;
+        if(al.size()==pos) al.add(root.data);
+        dfs(root.left,al,pos+1);
+        dfs(root.right,al,pos+1);
+    }
+}
