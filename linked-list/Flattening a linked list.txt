@@ -1,0 +1,50 @@
+class GfG
+{
+    Node flatten(Node root)
+    {
+        
+	Node root1=root;
+	while(root1!=null)
+	{
+	 Node down1=root1.bottom;
+	 
+	 Node root2=root1.next;
+	 Node down2=root2;
+	 
+	 while(down2!=null || down1!=null)
+	 {
+	     if(down1==null)
+	     {
+	         root1.bottom=down2;
+	         break;
+	     }
+	     else if(down2==null)
+	     {
+	         root1.bottom=down1;
+	         break;
+	     }
+	     else if(down1.data<=down2.data)
+	     {
+	         root1.bottom=down1;
+	         down1=down1.bottom;
+	         root1=root1.bottom;
+	     }
+	     else {
+	         root1.bottom=down2;
+	         down2=down2.bottom;
+	         root1=root1.bottom;
+	     }
+	 }
+	 root1=root2;
+	}
+	
+	Node cur=root;
+	while(cur!=null)
+	{
+	    cur.next=cur.bottom;
+	    cur=cur.bottom;
+	}
+	
+	return root;
+    }
+}
