@@ -12,7 +12,7 @@ class Solution {
         prev=prev.next;
     }
     
-    if(fast!=null)slow=slow.next;          // handle cases for odd even length list
+    if(fast!=null)slow=slow.next;          // handle cases for odd even length 
     prev.next=null;
    
 
