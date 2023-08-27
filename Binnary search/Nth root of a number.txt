@@ -6,7 +6,7 @@ public class Solution {
 
             int mid = low + (high - low) / 2;
 
-            double root = Math.pow(mid,n);      // can also implement our own pow function
+            double root = Math.pow(mid,n);      // can also implement our own power function
 
             if (root == (double)m) return (int)mid;
 
