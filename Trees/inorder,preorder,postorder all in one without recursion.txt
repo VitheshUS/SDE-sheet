@@ -1,0 +1,44 @@
+public class Solution {
+    public static List<List<Integer>> getTreeTraversal(TreeNode root) {
+        List<Integer>inorder=new ArrayList<>();
+        List<Integer>postorder=new ArrayList<>();
+        List<Integer>preorder=new ArrayList<>();
+        List<List<Integer>>al=new ArrayList<>();
+        al.add(inorder);
+        al.add(preorder);
+        al.add(postorder);
+
+        Stack<Node>st=new Stack<>();
+        st.add(new Node(root,1));
+
+        while(!st.isEmpty())
+        {
+           Node cur=st.peek();
+           if(cur.val==1)
+           {
+                  preorder.add(cur.node.data);
+                  cur.val=2;
+                  if(cur.node.left!=null) st.add(new Node(cur.node.left,1));
+           } 
+           else if(cur.val==2){
+                  inorder.add(cur.node.data);
+                  cur.val=3;
+                  if(cur.node.right!=null) st.add(new Node(cur.node.right,1));
+           }
+           else{
+               postorder.add(cur.node.data);
+               st.pop();
+           }
+        }
+        return al;
+    }
+}
+class Node{
+    TreeNode node=null;
+    int val=0;
+    Node(TreeNode node,int val)
+    {
+        this.node=node;
+        this.val=val;
+    }
+}
