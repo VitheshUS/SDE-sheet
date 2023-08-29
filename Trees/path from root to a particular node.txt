@@ -1,0 +1,23 @@
+ class Solution {
+    public static List<String> allRootToLeaf(BinaryTreeNode rootmint k) {
+        List<Integer>li=new ArrayList<>();
+        dfs(root,li,k);
+        return li;
+    }
+    public static boolean dfs(BinaryTreeNode root,List<Integer>li,int k)
+    {
+        if(root==null)return false;
+
+        li.add(root.val);
+
+        if(root.val==k){
+            return true;
+        }
+        if(dfs(root.left,li,k) || dfs(root.right,li,k)) return true;
+        
+        li.remove(li.size()-1);
+          
+        return false;
+
+    }
+}
