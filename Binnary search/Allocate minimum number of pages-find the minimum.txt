@@ -1,0 +1,56 @@
+public class Solution {
+    public int books(int[] A, int B) {
+      int n=A.length;
+      int total=0;
+      for(int i:A)
+       total+=i;
+       int low=0,high=total;
+       int pages=0;
+       while(low<high)
+       {
+           pages=(low+high)/2;     
+           int people=check(A,n,pages,B);
+           if(people==B)high=pages;
+           else if(people>B)low=pages+1;
+           else high=pages-1;
+       }
+       return getmax(A,high,B);
+    }
+    public int check(int[] A,int n,int pages,int max)
+    {
+        int stud=1;
+        int k=0;
+        for(int i:A)
+        {
+            if(k+i>pages)
+            {
+                stud++; 
+                k=i;
+            }
+            else{
+                k+=i; 
+            }
+        }
+        return stud;
+    }
+    
+    public int getmax(int[]A,int pages,int b)
+    {
+        int k=0;
+        int n=1;
+        int max=0;
+        for(int i:A)
+        {
+            if(k+i>pages)
+            {
+                max=Math.max(k,max);
+                k=i;
+                n++;
+            }
+            else k+=i;
+        }
+        if(n>=b)  
+        return Math.max(k,max);
+        return -1;
+    }
+}
