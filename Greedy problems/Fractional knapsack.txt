@@ -4,7 +4,7 @@ class Solution
     double fractionalKnapsack(int W, Item arr[], int n) 
     {
         compare c=new compare();
-        Arrays.sort(arr,(a,b)->c.compare(a,b));
+        Arrays.sort(arr,c);
         double total=0l;
         for(Item i:arr)
         {
