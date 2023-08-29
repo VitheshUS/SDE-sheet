@@ -10,7 +10,7 @@ class Solution {
         while(low<=high)                     // if high is not set to n1 in the begining then we can never include the last element.
         {
             int cut1=(low+high)>>1;           //cut1 is the starting of second part of the from the first array
-            int cut2=range-cut1;              ////cut2 is the starting of second part of the from the second array
+            int cut2=range-cut1;              //cut2 is the starting of second part of the from the second array
  
             int left1=cut1==0?Integer.MIN_VALUE:nums1[cut1-1];
             int left2=cut2==0?Integer.MIN_VALUE:nums2[cut2-1];
