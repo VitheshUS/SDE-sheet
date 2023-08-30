@@ -1,0 +1,34 @@
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {  
+        Stack<Integer>st=new Stack();  
+        int n=nums.length;
+        int[]arr=new int[n];
+        boolean[]found=new boolean[n];
+        for(int i=n-1;i>=0;i--)
+        {
+            int cur=nums[i];
+            while(!st.isEmpty() && st.peek()<=cur)st.pop();
+            if(!st.isEmpty()) {
+                arr[i]=st.peek();
+                found[i]=true;
+            }
+            st.push(cur);
+        }
+
+        for(int i=n-1;i>=0;i--)
+        {
+            if(found[i])continue;
+            int cur=nums[i];
+
+            while(!st.isEmpty() && st.peek()<=cur)st.pop();
+
+            if(!st.isEmpty()){
+                arr[i]=st.peek();
+                found[i]=true;
+            }
+        }
+        for(int i=0;i<n;i++)if(!found[i]) arr[i]=-1;
+
+        return arr;
+    }
+}

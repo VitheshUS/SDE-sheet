@@ -1,0 +1,25 @@
+class Solution {
+    public boolean isValid(String s) {
+        int n=s.length();
+        char[]st=new char[n/2+1];
+        int size=0;
+        int i=0;
+   
+        while(size<n/2+1 && i<n)
+        {
+            char c=s.charAt(i++);
+            if(size==0) st[size++]=c;
+
+            else if(c=='(' || c=='{' || c=='[')st[size++]=c;
+
+            else if(st[size-1]=='(' && c==')')size--;
+
+            else if(st[size-1]=='[' && c==']')size--;
+
+            else if(st[size-1]=='{' && c=='}')size--;
+
+            else return false;
+        }
+        return size==0;
+    }
+}

@@ -1,0 +1,30 @@
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+
+        int[]arr=new int[10000];
+        Stack<Integer>st=new Stack();
+
+        int m=nums2.length;
+        for(int i=m-1;i>=0;i--)
+        {
+            int cur=nums2[i];
+            
+            while(!st.isEmpty() && st.peek()<=cur)st.pop();
+            
+            if(!st.isEmpty()) arr[cur]=st.peek();
+
+            st.push(cur);
+            
+        }
+
+        int n=nums1.length;
+        int[]nums=new int[n];
+
+        for(int i=0;i<n;i++)
+        {
+            if(nums1[i]<arr[nums1[i]]) nums[i]=arr[nums1[i]];
+            else nums[i]=-1;
+        }
+        return nums;
+    }
+}
