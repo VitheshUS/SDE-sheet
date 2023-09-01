@@ -1,3 +1,1 @@
 1.Binnary Exponential
-2.TreeMap       -data structrue
-3.priorityQueue -data structure
