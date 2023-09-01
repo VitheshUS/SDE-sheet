@@ -6,7 +6,7 @@
 
 >i and j will be a confusion. Because if you put i instead of j or j instead of i then it will surely result in stack overflow..or infinite loop.
 
->Dont let your ego cotroll you...dont hesitate in using visited array while performing a travering problems.
+>Dont let your ego cotrol you...dont hesitate in using visited array while performing a travering problems.
 
 >Dont overthink.
 
@@ -22,3 +22,5 @@
 we can do that if looping condition is low<high
 
 >Correctly check if you have applied conditional operator or not.Dont get lost while colpy pasting the code.
+
+>You have solved so many question and today you failed to open your mind.You got a triplet problem which was based on 3sum on leetcode.You are such a dumb ass that whenever you see a problem that has some set type thing in it.You think about subset and recursion.You are so obsessed with recursion and making a problem so complicated that you go blind. When solving a question dont jump directly into complication. Think for some time. Think from basics.
