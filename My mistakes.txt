@@ -1,4 +1,4 @@
->Today i got some problem because i had two strings and had to perform operation on both. In the question it wasnt mentioned that both the string have same size but still i took n=length of first string. I should have taken the length of second String. i was so dumb here. From next time just see this.
+>Today i got some problem because i had two strings and had to perform operation on both. In the question it wasnt mentioned that both the string have same size but still i took n=length of first string. I should have taken the length of second String. i was so dumb here. From next time i wont do this.
 
 >Always check if there is any negative numbers while your are using frequency arrays.
 
@@ -14,13 +14,9 @@
 
 >Unnecessary conditional statements...
 
->Do not forget the inbuilt function. just because you solved hard problems where we dont use an inbuilt funstion doesn't mean that you  cant use any inbuilt functions.
-
 >Dont forget which variable to use while performing any operations.
 
->While doing binnary search ...if you keep looping condition as low<=high then we should remember that low=mid or high=mid will always result in infinite loop. 
+>While doing binnary search ...if we keep looping condition as low<=high then we should remember that low=mid or high=mid will always result in infinite loop. 
 we can do that if looping condition is low<high
 
->Correctly check if you have applied conditional operator or not.Dont get lost while colpy pasting the code.
-
->You have solved so many question and today you failed to open your mind.You got a triplet problem which was based on 3sum on leetcode.You are such a dumb ass that whenever you see a problem that has some set type thing in it.You think about subset and recursion.You are so obsessed with recursion and making a problem so complicated that you go blind. When solving a question dont jump directly into complication. Think for some time. Think from basics.
+>Correctly check if you have applied conditional operator or not.Dont get lost while copy pasting the code.
