@@ -1,0 +1,33 @@
+class LRUCache {
+    int capacity;
+    HashMap<Integer,Integer>map;
+    Stack<Integer>st;
+    Deque<Integer>qu;
+    public LRUCache(int capacity) {
+        this.capacity=capacity;
+        st=new Stack();
+        qu=new LinkedList();
+        map=new HashMap<>();
+    }
+    
+    public int get(int key) {
+        if(!map.containsKey(key))return -1;
+        while(qu.peek()!=key)st.push(qu.pop());
+
+        qu.offer(qu.poll());
+
+        while(!st.isEmpty()) qu.addFirst(st.pop());
+
+        return map.get(key);
+
+    }
+    
+    public void put(int key, int value) {
+        if(get(key)==-1){
+        if(qu.size()==capacity) map.remove(qu.poll()); 
+        qu.add(key);
+        map.put(key,value);
+        }
+        else map.put(key,value);   
+    }
+}
