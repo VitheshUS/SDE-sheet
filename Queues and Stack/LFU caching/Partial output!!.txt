@@ -1,0 +1,92 @@
+class LFUCache {
+    HashMap<Integer,Node>map;
+    HashMap<Integer,Node>counter;
+    Node head;
+    Node tail;
+    int count;
+    int capacity;
+
+    public LFUCache(int capacity) {
+        this.capacity=capacity;
+        count=0;
+        head=new Node(0,0,0);
+        tail=new Node(0,0,-1);
+
+        head.next=tail;
+        tail.prev=head;
+
+        map=new HashMap<>();
+        counter=new HashMap<>();
+        counter.put(0,head);
+    }
+    public void delete(Node cur){
+        if(counter.containsKey(cur.con)&&counter.get(cur.con)==cur){
+            if(cur.con==cur.prev.con)
+            counter.put(cur.prev.con,cur.prev);
+            else counter.remove(cur.prev.con);
+        } 
+
+        cur.prev.next=cur.next;
+        cur.next.prev=cur.prev;
+        count--;
+        map.remove(cur.key);
+    }
+
+    public void add(Node cur,Node root,int pos){
+        root.next.prev=cur;
+        cur.next=root.next;
+        cur.prev=root;
+        root.next=cur;
+
+        count++;
+        map.put(cur.key,cur);
+        counter.put(pos,cur);
+    }
+    
+    public int get(int key) {
+
+        if(!map.containsKey(key))return -1; 
+
+        int cur_count=map.get(key).con+1;
+        Node cur=map.get(key);
+
+        delete(cur);
+        int cnt=cur_count;
+
+        while(!counter.containsKey(cnt))
+             cnt--;
+
+        add(cur,counter.get(cnt),cur_count);
+
+        return cur.val;
+    }
+    public void put(int key, int value) {
+        Node cur=new Node(key,value,0);
+
+        if(map.containsKey(key))
+            delete(map.get(key));
+        
+        else if(count==capacity)
+            delete(head.next);  
+        
+        add(cur,counter.get(0),0);
+    }
+    class Node{
+        int key;
+        int val;
+        int con;
+        Node next=null;
+        Node prev=null;
+        Node(int key,int val,int con){
+            this.key=key;
+            this.val=val;
+            this.con=con;
+        }
+    }
+}
+/**
+ * Your LFUCache object will be instantiated and called as such:
+ * LFUCache obj = new LFUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
