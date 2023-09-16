@@ -1,1 +1,2 @@
 1.Binnary Exponential
+2.inner static class -concept
