@@ -1,0 +1,56 @@
+class Solution {
+    public int orangesRotting(int[][] grid) {
+        int row=grid.length,col=grid[0].length,count=0,time=0,total=0;
+        Queue<Orange>qu=new LinkedList();
+        boolean[][]rotten=new boolean[row][col];
+
+        for(int i=0;i<row;i++)
+        for(int j=0;j<col;j++){
+            if(grid[i][j]==2){
+                qu.offer(new Orange(i,j));
+                rotten[i][j]=true;
+                count++;
+            }
+            if(grid[i][j]==1)total++;
+        }
+
+        if(total==0)return 0;
+
+        while(!qu.isEmpty()){
+            int cur=0;
+            while(count-->0){
+                Orange o=qu.poll();
+                cur+=findRotten(rotten,qu,grid,o);
+            }
+            time++;
+            count=cur;
+            total-=cur;
+        }
+        return total==0?time-1:-1;
+    }
+
+    public int findRotten(boolean[][]rotten,Queue<Orange>qu,int[][]grid,Orange o){
+        int count=0,row=o.r,col=o.c,m=grid.length,n=grid[0].length;
+        int[][]dir={{-1,0},{1,0},{0,-1},{0,1}};
+        for(int i=0;i<4;i++)
+        {
+            int r=row+dir[i][0];
+            int c=col+dir[i][1];
+            if(r<0 || r>=m || c<0 || c>=n)continue;
+            if(grid[r][c]==1 && rotten[r][c]==false)
+            {
+            qu.add(new Orange(r,c));
+            rotten[r][c]=true;
+            count++;
+            }
+        }
+        return count;
+        }
+    class Orange{
+        int r,c;
+        Orange(int r,int c){
+            this.r=r;
+            this.c=c;
+        }
+    }
+}

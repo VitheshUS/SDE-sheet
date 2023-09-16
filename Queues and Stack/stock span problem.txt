@@ -1,0 +1,25 @@
+class StockSpanner {
+    Pair[]st;
+    int top;
+    public StockSpanner() {
+        st=new Pair[10000];
+        top=-1;
+    }
+    public int next(int price) {
+        int curSpan=1;
+        while(top!=-1 && st[top].price<=price){
+            Pair prev=st[top--];
+            curSpan+=prev.span;
+        }
+        st[++top]=new Pair(price,curSpan);
+        return curSpan;
+    }
+    class Pair{
+        int price;
+        int span;
+        Pair(int price,int span){
+            this.price=price;
+            this.span=span;
+        }
+    }
+}
