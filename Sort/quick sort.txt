@@ -1,0 +1,27 @@
+package org.example;
+public class QuickSort {
+    public static void main(String[] args) {
+        int[] arr={3,2,3,1,2,4,8,7,6};
+        int n=arr.length;
+        quicksort(arr,0,n-1);
+        for(int i:arr) System.out.print(i+" ");
+    }
+    private static void quicksort(int[] arr, int low, int high) {
+        if(low>=high)return;
+        int p=low;
+        int i=low+1,j=high;
+        while(i<=j){
+            while(i<=j && arr[i]<=arr[p])i++;
+            while(i<=j && arr[j]>arr[p])j--;
+            if(i<j) swap(arr,i++,j--);
+        }
+        swap(arr,p,j);
+        quicksort(arr,low,j-1);
+        quicksort(arr,j+1,high);
+    }
+    public static void swap(int[]arr,int i,int j){
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+}
