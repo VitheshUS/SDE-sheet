@@ -1,0 +1,33 @@
+class Solution  // time complexity is O(k^2*log(k))
+{
+    public static ArrayList<Integer> mergeKArrays(int[][] arr,int k) 
+    {
+        PriorityQueue<Triplets>qu=new PriorityQueue();
+        ArrayList<Integer>al=new ArrayList<>();
+        for(int i=0;i<k;i++)qu.add(new Triplets(arr[i][0],i,0));
+        
+        while(!qu.isEmpty()){
+           Triplets t=qu.poll();
+           int i=t.i;
+           int j=t.j;
+           al.add(t.val);
+           
+           if(j+1<k){
+               qu.offer(new Triplets(arr[i][j+1],i,j+1));
+           }
+        }
+        return al;
+    }
+}
+class Triplets implements Comparable<Triplets>{
+    int val,i,j;
+    Triplets(int val,int i,int j){
+        this.val=val;
+        this.i=i;
+        this.j=j;
+    }
+    @Override
+    public int compareTo(Triplets t){
+        return this.val-t.val;
+    }
+}
