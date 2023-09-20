@@ -1,0 +1,40 @@
+class Solution
+{
+    //Function to merge k sorted arrays.
+    public static ArrayList<Integer> mergeKArrays(int[][] arr,int K) 
+    {
+        int n=arr.length;
+        return mergesort(arr,K,0,n-1);
+    }
+    public static ArrayList<Integer> mergesort(int[][]arr,int k,int low,int high){
+        if(low==high){
+            ArrayList<Integer>al=new ArrayList<>();
+            for(int i=0;i<k;i++)al.add(arr[low][i]);
+            return al;
+        }
+        int mid=(low+high)/2;
+        return merge(mergesort(arr,k,low,mid),mergesort(arr,k,mid+1,high));
+    }
+    public static ArrayList<Integer> merge(ArrayList<Integer>a,ArrayList<Integer>b){
+        ArrayList<Integer>c=new ArrayList<>();
+        int i=0,j=0;
+        int m=a.size();
+        int n=b.size();
+        
+        while(i<m || j<n){
+            if(i<m && j<n){
+                if(a.get(i)<b.get(j)){
+                    c.add(a.get(i++));
+                }
+                else c.add(b.get(j++));
+            }
+            else if(i<m){
+                c.add(a.get(i++));
+            }
+            else{
+                c.add(b.get(j++));
+            }
+        }
+        return c;
+    }
+}
