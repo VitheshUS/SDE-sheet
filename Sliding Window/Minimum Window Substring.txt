@@ -1,0 +1,35 @@
+class Solution {
+    public String minWindow(String s, String t) {
+        int i=0,j=0,n=s.length(),m=t.length(),count=0,minl=0,minr=n;
+
+        int[]map=new int[123];
+        int[]arr=new int[123];
+        
+        for(int k=0;k<m;k++) map[t.charAt(k)]++;
+
+        char[]c=s.toCharArray();
+
+        while(j<n){
+
+            arr[c[j]]++;
+
+            if(arr[c[j]]<=map[c[j]]) count++;
+            
+            if(count==m){
+
+                while( arr[c[i]] > map[c[i]] ) arr[c[i++]]--;
+                        
+                if(j-i < minr-minl){
+                    minl=i;
+                    minr=j;
+                }
+
+                if( --arr[c[i]] < map[c[i]] )  count--;
+
+                i++;
+            }
+            j++;
+        }
+        return minr==n?"":s.substring(minl,minr+1);
+    }
+}

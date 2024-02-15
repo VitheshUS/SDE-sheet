@@ -1,0 +1,43 @@
+class Solution {
+    public int myAtoi(String s) {
+        int n=s.length();
+        int i=0;
+        boolean flag=false;
+        while(i<n){
+            while(i<n && s.charAt(i)==' ')i++;
+            if(i>=n)break;
+            if(s.charAt(i)=='+' || s.charAt(i)=='-'||(s.charAt(i)>=48 && s.charAt(i)<58))return convert(s,i);
+            else return 0;
+        }
+        return 0;
+    }
+    public int convert(String s,int i){
+        char c='+';
+        long dig=0l;
+        if(s.charAt(i)=='-'||s.charAt(i)=='+'){
+            c=s.charAt(i);
+            i++;
+        }
+        int n=s.length();
+        while(i<n){
+            if(s.charAt(i)<48 || s.charAt(i)>57){
+                if(dig==0)return 0;
+                break;
+            }
+            else if(dig==0 && s.charAt(i)=='0')i++;
+            else{
+                dig*=10l;
+                dig+=(long)s.charAt(i)-48l;
+                i++;
+
+               if(dig>2147483647)
+                {
+                    if(c=='-')return Integer.MIN_VALUE;
+                    else return Integer.MAX_VALUE;
+                }
+            }
+        }
+        if(c=='-')return -(int)dig;
+        return (int)dig;
+    }
+}

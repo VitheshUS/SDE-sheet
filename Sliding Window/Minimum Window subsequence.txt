@@ -1,0 +1,35 @@
+public class Solution {
+    
+    public static String minWindow(String S, String T) {
+
+        char[]c=S.toCharArray();
+        char[]t=T.toCharArray();
+
+        int j=0,n=S.length(),k=0,m=T.length(),d=Integer.MAX_VALUE,head=0;
+        
+        while(j<n){
+
+            if(c[j]==t[k]) k++;
+
+            if(k>=m)
+            {
+                int i=j;
+                k=m-1;
+                while(k>=0){
+
+                    if(c[i]==t[k]) k--;
+
+                    i--;
+                }
+
+                if(j-i<d)d=j-(head=i+1);
+
+                k=0;
+                j=i+2;
+                continue;
+            }
+            j++;
+        }
+        return d==Integer.MAX_VALUE?"":S.substring(head,head+d+1);
+    }
+}

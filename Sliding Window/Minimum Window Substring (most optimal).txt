@@ -1,0 +1,22 @@
+class Solution {
+    public String minWindow(String s, String t) {
+        int[]map=new int[123];
+        char[]c=s.toCharArray();
+        int n=s.length(),count=t.length(),i=0,j=0,d=Integer.MAX_VALUE,beg=0;
+
+        for(char ch:t.toCharArray()) map[ch]++;
+
+        while(j<n){
+
+            if(map[c[j++]]-->0)count--;
+
+            while(count==0){
+                
+                if(j-i<d)d=(j-(beg=i));
+
+                if(map[c[i++]]++==0)count++;
+            }
+        }
+        return d==Integer.MAX_VALUE?"":s.substring(beg,beg+d);
+    }
+}
