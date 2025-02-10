@@ -1,0 +1,33 @@
+1> Router Link and href in angular:
+ What href basically does is it updates the whole page and update the url but its not a good practice to do this so we have routerLink
+<a routerLink='/home' /> instead of href='/home'
+here angular listens to the event when the event occurs angular intercepts the request and takes full controll of the routing.
+  First it updates the url
+  The page is not reloaded
+  Any request is not made
+
+Angular Router detects the url change
+It keeps track of the url change using  History API
+Router's location stratergy detects the change and checks for the matching route in app.route.ts and loads the appropriate component without reloading the whole page.
+
+*****************************************************************************************************************************************************************************************************************************
+2> Angular Signals is similar to react useState
+Angular Signals
+. Used for local and global state management
+. We can use signals in injectable services to maintain global state management
+
+create a service and write
+   count = signal(0)
+
+increment=()=>{
+this.count.set(this.count()+1); // any signal must be called as a function to get its value
+}
+
+then in any coomponent
+
+create count=computed(()=>this.service.count()) // whenever the count value changes in the sevice the computed reruns. so computed is very important
+
+so if we want to access the value we call count as a function to access the value.
+if we want to update the value then we must update it through the service
+
+****************************************************************************************************************************************************************************************************************************
