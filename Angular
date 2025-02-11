@@ -31,3 +31,8 @@ so if we want to access the value we call count as a function to access the valu
 if we want to update the value then we must update it through the service
 
 ****************************************************************************************************************************************************************************************************************************
+ 3> when do we use [] brackets
+   in a property whenever we are binding any property the we use [] brackets .
+   Even @Input() is a property of a component hence we use [] breackets for this
+
+******************************************************************************************************************************************************************************
