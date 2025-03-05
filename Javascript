@@ -1,0 +1,10 @@
+Pure Functions:
+Pure functions are the function that does not depend on external variables
+The outputs are always predictable
+It does not modify any external variable
+
+function add(a,b){
+    return a+b;
+}
+
+******************************************************************************************
