@@ -36,3 +36,7 @@ if we want to update the value then we must update it through the service
    Even @Input() is a property of a component hence we use [] breackets for this
 
 ******************************************************************************************************************************************************************************
+
+4> app.config.ts
+We register all dependencies and its value in this provider, the instance are available globally across the application and we can access them using inject ot constructor DI
+The required dataType acts like a key
