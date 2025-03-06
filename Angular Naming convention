@@ -1,0 +1,3 @@
+Observable
+we must always put $ infront of every variable if its an observable
+eg: varA$:Observable<any>
