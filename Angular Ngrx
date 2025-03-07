@@ -68,3 +68,8 @@ eg:
 this.groceries$ = store.select(selectGroceryType) this is going to create a observable instance that return observables.
 
 Store Dispatch → Reducer Updates Store → Selector Reruns → Observable Emits → UI Updates
+
+
+> EFFECTS:
+This capture the action from stream make necessary transformation and send the data to the reducer.
+We can use this to make an API call or any other asynchronous operations.
