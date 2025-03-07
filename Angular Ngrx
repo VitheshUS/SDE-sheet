@@ -1,0 +1,68 @@
+Ngrx contains Store which is a global store
+reducers,action
+
+reducer is like a brain its responseible for creating and managing the state
+the reducer will take a slice of store int the global store and it will have its own actions.
+
+So bascially each state is managed my its own reducer and action and those state will be stored in the global store
+
+1> The initial step is to create a reducer and provide a initial state to it
+
+
+> So there can be one reducer and its store slice and multiple selectors and actions
+So basically action is like and even which contains label and the payLoad which is the parameter
+The defination of that action is in the reduder. 
+The reducer will keep listening to that action.
+So how to trigger this action
+In a componet we can dispatch the action and pass the parameter to it which is the payload. After dispatching and object is created with the required label and is then pushed into an observable stream
+All the reducers are listening to or subscribed to the stream. So whenever a new event comes then the reducers check if its been listening to that event . if yes then it will pick that payload from that even and 
+it will then executer the defination inside it and it will change the state.
+
+So an action is a function which when called returns an action object.
+Eg:
+export const addToBucket = createAction(
+    '[bucket] Add',
+    props<{ payLoad: Bucket }>()
+)
+the value returned is {
+  "type": "[bucket] Add",
+  "payLoad": {
+    "id": 1,
+    "quantity": 2
+  }
+}
+
+so this will be dispatched into the observable stream then whatever reducer is dependent on this event will react to it.
+So based on the type the matching happens. The reducers will the compare the type of all the functions its listening and will compare the type of the new event. and after that it will take the payload from that event and will then execture the state changing function
+
+
+> SELECTORS:
+selector can be a simple function that reacts to store change and refetch the respective state.
+But the problem is even though the state of a different slice change the whole seletor reruns
+To solve this issue we have a selector that had memoization
+Which has a featureselector which is responsible to fetch the state
+and a selector which is dependent on this feature selector and has a function that performs some operations with the state and return the new state without modifying the original state.
+Eg:
+export const selectGroceries = createFeatureSelector<Grocery[]>('groceries'); // responsible for fetching the given state
+
+export const selectGroceryType = createSelector(
+    selectGroceries, //fetch the state
+    (state) => state.filter(item => item.type == "fruit") // perform operation on the copy of the state
+)
+
+So now when any state changes now the selector compares the previous state and the curret state. if they are same then computation is not performed and the memoized data is returned.
+
+
+>Observable
+Now we need to load the state in the component level. So now we get the store instance using Dependency injection and we also give the generic type so that typescript can deal with the given tpye only and it also return the give type.
+after we have the store instance we do a select and pass the selector.
+Now based on the internal configuration of the selector the appropriate state is fetched and necessary transformation is done and the state is returned after the internal tpye check.
+the selector is an observable and it continously return an observalble whenever required so the data can keep on changing.
+eg:
+  groceries$?: Observable<Grocery[]>;
+
+  constructor(private store: Store<{ groceries: Grocery[] }>) {
+    this.groceries$ = store.select(selectGroceryType)
+  }
+
+this.groceries$ = store.select(selectGroceryType) this is going to create a observable instance that return observables.
