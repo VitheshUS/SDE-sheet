@@ -62,7 +62,9 @@ eg:
   groceries$?: Observable<Grocery[]>;
 
   constructor(private store: Store<{ groceries: Grocery[] }>) {
-    this.groceries$ = store.select(selectGroceryType)
+    this.groceries$ = store.select(selectGroceryType) // this will return an observable instance that emits value.
   }
 
 this.groceries$ = store.select(selectGroceryType) this is going to create a observable instance that return observables.
+
+Store Dispatch → Reducer Updates Store → Selector Reruns → Observable Emits → UI Updates
