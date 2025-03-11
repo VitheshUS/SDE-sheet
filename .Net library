@@ -1,0 +1,23 @@
+>Mediator:(free)
+  For minimal api 
+
+>Mapster:(free)
+  For mapping the object from one to another
+
+>Razor lite , Fluid parser: (free)
+  To render any model into text
+
+>ITextsharp,aspos:(paid for commercial)
+  To manage word and pdf
+
+>LibreOffice:(free)
+  convert word to pdf
+  These are commandLine tools so we need a process to use these executable files.
+
+>Ffmpeg:(free)
+  To manage video files
+  we can convert videos into segments for hls(http live streaming)
+  This is a command line tool and we need a process to use this executable file
+
+>Serilogger:
+  Forloging
