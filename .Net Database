@@ -1,0 +1,18 @@
+Each DbContext is actually a state of the database
+For every first query whatever entities where used will be loaded into the memory. Like a state. So whenever any query related to that entity is performed it will be cached
+
+So Each DbContext will maintain its own state after every first query.
+
+1️⃣ On the first query, EF Core fetches data from the database and loads it into memory (Change Tracker).
+2️⃣ Any subsequent queries for the same entity within the same DbContext instance will use the in-memory tracked version instead of querying the database again.
+3️⃣ Each DbContext instance has its own state and is isolated from other instances.
+
+ Each DbContext instance is a separate "state" of the database.
+✅ On the first query, entities are loaded into memory and tracked.
+✅ Subsequent queries for those entities return from memory, not the database.
+✅ A new DbContext has no knowledge of the previous one's state.
+
+Hence if we dont want the query to be loaded from the memory we shouldnt also store them in change tracker as well. so for each query we use asNoTracking()
+✔ AsNoTracking() prevents EF Core from storing entities in memory (Change Tracker).
+✔ Every query will always hit the database, ensuring fresh data.
+✔ Useful for read-only operations where tracking is unnecessary.
