@@ -1,0 +1,34 @@
+Presentation Layer + API layer
+Application
+Domain
+Infrastructure
+
+>Infrastructure layer:
+It has access to domain layer and application layer
+Implements interface defined in application layers. 
+Database Repositories (EF Core, Dapper)
+Logging (Serilog, NLog)
+External APIs (REST, GraphQL)
+File Storage (Azure Blob, AWS S3)
+
+So the application defines all the external dependency operations and those operation will be implemented by the infrastructure layer
+So basically business logic is defined there but applications layer must not worry wbout how that logic happens. It must only perform that logic
+Hence the infrastructure layer implements all those logics. So that infuture we can change the implmentation or external dependencies like database and there is no need of touching the application layer
+
+>Application Layer:
+Must contain the business logic but not the actual implementation.
+
+>Domain layer:
+We write all the entities and models and rules in the domain layer. All other layer will follow these rules.
+For example the infrastructure layer can take the rules from this layer before performing any operations in the database.
+The domain layer must also inlcude rules to update and create that object.
+
+>Server side presentation layer:
+API layer include the API controller and it handles reuqest request and response
+It only communicates with the application layer to perform the business logic and what ever the application layer returns is send back as a response
+Dependency injection in registered in this layer that contains program.cs where we usually register DI using builder
+It does not perform any business logic but its responsible send and resive api request
+And different configurations are also present in this layer
+
+>client side presentation layer:
+These are usualy frontend application which interacts with the client and is responsible for making api calls and display the response
