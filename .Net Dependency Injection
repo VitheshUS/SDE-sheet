@@ -1,1 +1,16 @@
+Dependency Injection :
+Singletone
+scoped
+Transient
+
+Singleton: 
+A single instance will be shared across the application
+
+scoped:
+For one api request one instance will be created.
+For example we have a e commerse application where we call by product api. Within the API we have two service that is userService and productService
+Both the service has a constructor which needs dependency injection in this scenario same instance will be shared in both these services
+
+Transient:
+New instance is created for each dependency injection
 
