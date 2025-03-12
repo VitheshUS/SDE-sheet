@@ -73,3 +73,14 @@ Store Dispatch → Reducer Updates Store → Selector Reruns → Observable Emit
 > EFFECTS:
 This capture the action from stream make necessary transformation and send the data to the reducer.
 We can use this to make an API call or any other asynchronous operations.
+
+
+When to use NGRX vs Service:
+When we have 2-3 components that is sharing state then services is prefered
+But we have more components that shares state then we use ngrx
+
+both provide options to store the state in local storage so that we can maintain state across page reloads (Used in ecommerce apps fo shopping carts)
+We can use local storage in both services and Ngrx.
+
+But Ngrx gives better state control like selectors.
+We cant directly change state. We have to dispatch some action to change the state
