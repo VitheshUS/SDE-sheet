@@ -14,3 +14,7 @@ Both the service has a constructor which needs dependency injection in this scen
 Transient:
 New instance is created for each dependency injection
 
+When we configure any dependency Injection for example:
+builder.Services.Configure<JwtOptions>(options =>builder.Configuration.GetSection("ApiSettings:JwtOptions").Bind(options));
+This Dependency will be injected as IOptions<JwtOptions> jwtOptions
+and we have to access the instance using jwtOptions.value
