@@ -8,12 +8,18 @@ if x=odd and you want to use x-1
 then we can simply peform x^1  .this gives x-1 for odd and x+1 for even..
 
 ****************************************************************************************************************
-****************************************************************************************************************
-
 
 If you want to traverse the same loop twice and perform the same operation then set the loop range to 2n-1 
 And while accesing the element using i ->use i%n.
 
 
 ****************************************************************************************************************
-****************************************************************************************************************
+
+if [i,j] are the position of the element in the matrix then the value of that position if arranged linearly is i*colCount+j
+
+**************************************************************************************************************
+
+Reverse cycle formula
+ (arrayLength+ index % arrayLength) % arrayLength
+
+***************************************************************************************************************
