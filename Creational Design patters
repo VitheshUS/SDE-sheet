@@ -27,3 +27,56 @@ public class LazySingleton {
 
 // Here LaztSingleton.class is a special object that tells us to apply synchronization throught that class object. So if one thread enters the sunc block then the rest thread cant enter that block even if they are in different instance
 // If we give a particular instance then the locking only happens within that object.
+
+>BILL PUGH Singleton: (Handle synchronization effeciently): IMPORTANT !!
+
+Before diving into the this lets learn about the inner class
+When jvm start compiling it start creating the special objects for all the classes. The special object is not an instance of that object but it contains the metadata of the object which is used during the actual creation of the object
+So all the static varaibles are loaded into the memory and the static block is also executed.
+But the inner class is in the form of metadata and its not actually loaded into the memory. Therefore all the static varaible and static block inside the static inner class are not executed or loaded into the memory.
+But as soon as the inner class is referenced the class are now loaded into the memory and static variable is loaded into the static memory.
+
+For static inner class we can directly reference them without creating the instance of the outer class
+For non static inner class we need instance of the outer class to refernce the inner class.
+
+These are done by JVM
+
+In Bill Pugh we are not relying on double checking and synchronized block but we will rely on JVM's powerfull class loading synchronization
+
+public class BillPughSingleton {
+    private BillPughSingleton() { }
+
+    private static class SingletonHelper {
+        private static final BillPughSingleton INSTANCE = new BillPughSingleton();
+    }
+
+    public static BillPughSingleton getInstance() {
+        return SingletonHelper.INSTANCE;  // Class loads only when first accessed
+    }
+}
+
+As we know the inner class are not loaded into the memory until they are refenced.
+In the above example as soon as the inner class is loaded into the memory the instance is created and that instance is shared through out.
+But initialy they are not loaded right.
+
+So here, 2 thread tries to access the inner class instance. But the instance is not loaded in the memory. Hence JVM will choose any one thread from the 2 thread and lets it to load the class into the memory while the other thread waits.
+Basically here when the class is loaded the instance is created. After the instance is created thread 1 take that and continue and continue its exection. In the same way thread 2 also resumes the execution but the instance is loaded in the memory right.
+Hence it take the instance that is in the memory and continues its execution.
+
+🔹 How JVM Handles Multiple Threads
+Step	Action
+T1 & T2 call getInstance() at the same time -> 	Instance is not created yet
+JVM chooses one thread (T1 or T2) ->	That thread loads SingletonHelper class
+JVM locks SingletonHelper ->	Ensures no other thread can load it at the same time
+INSTANCE is created	Stored in memory
+Other thread (T2) resumes ->	Finds INSTANCE already created, just returns it
+Future calls (T3, T4, etc.) ->	Directly get the instance (super fast, no waiting!)
+
+🔹 Final Takeaway
+💡 Instead of writing manual synchronization, we are letting JVM handle it for us!
+💡 This makes the Bill Pugh Singleton the most efficient way to implement a Singleton in Java.
+
+🔥 Smart design → Best performance → 100% thread safety! 🔥
+
+
+***********************************************************************************************************************************************************
