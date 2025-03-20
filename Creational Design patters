@@ -1,0 +1,29 @@
+> Singleton design pattern:
+
+The class must have a private constructor so that we cant create the instances externally 
+The class must be final so that it cannot be inherited
+It must have a private static variable
+It must have a static factory method
+It must handle async calls
+
+We can use double checking for synchronization
+
+public class LazySingleton {
+    private static volatile LazySingleton instance;
+
+    private LazySingleton() {}
+
+    public static LazySingleton getInstance() {
+        if (instance == null) { // First check (no locking)
+            synchronized (LazySingleton.class) { // Locking on class object
+                if (instance == null) { // Second check (inside lock)
+                    instance = new LazySingleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+
+// Here LaztSingleton.class is a special object that tells us to apply synchronization throught that class object. So if one thread enters the sunc block then the rest thread cant enter that block even if they are in different instance
+// If we give a particular instance then the locking only happens within that object.
