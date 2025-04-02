@@ -80,3 +80,71 @@ Future calls (T3, T4, etc.) ->	Directly get the instance (super fast, no waiting
 
 
 ***********************************************************************************************************************************************************
+
+
+FACTORY METHOD:
+So basically we are abstracting the object creation from the one that uses it.
+Lets consider the code that uses that object as client and the object as product.
+The client wants to perform some operation and he knows what to call. But he dosent care about how that operation is performed and who does that.
+Lets consider a logistics application where we have to transport an order. But the location can be nearby or offshore. So the transportation can be a ship or a truck or even a plane.
+Now all these are different transportion but they all deliver right. So client is only worried about delivery.
+Now the client will call the factory method to give a proper instance that does the job. the client will get the instance and will call the deliver method in that instance.
+
+Now inorder to achive this we need abstract class or an interface.
+Because the interface will have this method.
+The rest of the class will implement this interface.
+So we can use this interface as a reference type.
+
+We have an interface ITransport
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class Main {
+    public static void main(String[] args) {
+        Main obj=new Main();
+        String destination="Offshore";
+        
+        ITransport transport=obj.getTransport(destination);
+        if(transport !=null)
+        transport.deliver();
+         
+
+    }
+    public ITransport getTransport(String destination){
+         switch(destination){
+             case "Offshore":
+                 return new Ship();
+             case "NearBy":
+                 return new Truck();
+             default:return null;
+         }
+    }
+}
+
+interface ITransport{
+    public void deliver();
+}
+
+class Ship implements ITransport{
+    public void deliver(){
+        System.out.println("Delivered by ship");
+    }
+}
+
+class Truck implements ITransport{
+    public void deliver(){
+        System.out.println("Delivered by Truck");
+    }
+}
+
+We are only worried about delivering here. Who and how is none of our concern.
+
+Now for the object pooling.
+If the object creation is very expensive then we need to follow object polling.
+We will have a onbject pool instance and that instance will have a datastructure that will help us store the objects.
+Here lets say that the datastructure is Queue. When ever we want an object we will first have a singleton instacnce of this object pool.
+This single instance will also have a factory method.
+Now when we want some instance from this factory method . that method will first check if the instance is already there in queue. if its already there then we just poll that and return it.
+After the object is used by the client the client must release the instance by calling the release method of the object pool and passing the instance.
+Now the object will be stored back in the queue.
