@@ -148,3 +148,15 @@ This single instance will also have a factory method.
 Now when we want some instance from this factory method . that method will first check if the instance is already there in queue. if its already there then we just poll that and return it.
 After the object is used by the client the client must release the instance by calling the release method of the object pool and passing the instance.
 Now the object will be stored back in the queue.
+
+
+**********************************************************************************************************************************************************************
+
+ABSTRACT FACTORY:
+So basically this uses a factory method but now we have multiple factory that uses factory methods.
+If we are dealing with multiple related objects then we use abstract factory.
+
+There is a product called chairs,table so we have a factory method that creates these products.
+But there is also a chance that the styles of these are different. some  may be made of wood or some ay be made of legos. But they all basic common property.
+In this case we need different factories to create the instance of the objects.
+So based on the requiredment we need different factory. And these factory will have factory methods that create the required intances.
