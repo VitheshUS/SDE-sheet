@@ -160,3 +160,110 @@ There is a product called chairs,table so we have a factory method that creates 
 But there is also a chance that the styles of these are different. some  may be made of wood or some ay be made of legos. But they all basic common property.
 In this case we need different factories to create the instance of the objects.
 So based on the requiredment we need different factory. And these factory will have factory methods that create the required intances.
+
+************************************************************************************************************************************************************************
+
+BUILDER:
+
+So bascially if there is an instance , we are seperating the property construction from the actual intance.
+For example if we have a house class. Then it will have different properties like walls, floors, pools, garden, and many more.
+But every house dosent require all these property.
+So when we are creating an house instance , We have to pass paremeters to the constructor. But doing this is very messy because we either have to create many constructors 
+or pass null values to the constructor.
+
+For example saying :
+I want to build a house with 4 walls and a floor and 1 door
+I want to build a house with 4 walls and floor and 1 door and no swimming pool and no gardern and .....
+
+Which is the better way to say things? obviously the first one right.
+
+So lets keep the property in the class but no need of passing them throught the constructors.
+Instead we will have a seperate builder object which will have
+buildWalls();
+buildFloor();
+buildGarden();
+buildPool(); ... and much more
+
+But different builders can have their own style of building things.
+Like the one who builds everything with wood, One who builds with stones and one with cement
+
+They all build things but in a different way.
+So we can have different builders but they are independent from each other. only one builder can work on an house at a time.
+They all have same property but so those things in a different way.
+
+There is also a director that can be used.
+What we usually do is the client themselves can call all the build methods in the builder and build the house.
+But if client thinks that doing all those work by himself is such a draaaag. then he can use a director object.
+Now the director is responsible to build the house in a correct manner.
+
+Now client just have to call one method in the director and give the builder to that director.
+Now everything will be handled by the director. 
+Then again the director is not compulsory.
+
+// Product Class
+class Car {
+  constructor(
+    public brand: string,
+    public color: string,
+    public engine: string,
+    public seats: number
+  ) {}
+
+  showDetails() {
+    console.log(`Car: ${this.brand}, Color: ${this.color}, Engine: ${this.engine}, Seats: ${this.seats}`);
+  }
+}
+
+// Builder Class
+class CarBuilder {
+  private brand!: string;
+  private color!: string;
+  private engine!: string;
+  private seats!: number;
+
+  setBrand(brand: string): this {
+    this.brand = brand;
+    return this;
+  }
+
+  setColor(color: string): this {
+    this.color = color;
+    return this;
+  }
+
+  setEngine(engine: string): this {
+    this.engine = engine;
+    return this;
+  }
+
+  setSeats(seats: number): this {
+    this.seats = seats;
+    return this;
+  }
+
+  build(): Car {
+    return new Car(this.brand, this.color, this.engine, this.seats);
+  }
+}
+
+// Using the Builder
+const car1 = new CarBuilder()
+  .setBrand("Tesla")
+  .setColor("Red")
+  .setEngine("Electric")
+  .setSeats(5)
+  .build();
+
+const car2 = new CarBuilder()
+  .setBrand("BMW")
+  .setColor("Black")
+  .setEngine("V8")
+  .setSeats(2)
+  .build();
+
+car1.showDetails();  // Car: Tesla, Color: Red, Engine: Electric, Seats: 5
+car2.showDetails();  // Car: BMW, Color: Black, Engine: V8, Seats: 2
+
+****************************************************************************************************************************************************************
+
+PROTOTYPE:
