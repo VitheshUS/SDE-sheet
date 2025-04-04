@@ -267,3 +267,11 @@ car2.showDetails();  // Car: BMW, Color: Black, Engine: V8, Seats: 2
 ****************************************************************************************************************************************************************
 
 PROTOTYPE:
+Prototype design pattern is all about the cloning of objects.
+Lets say we want a copy of an object. But copying it manually would be insane because an object can hava recursive composite objects and they all can have private properties.
+We can access the private properties directly. So copying few objects may become almost impossible.
+So what we can do is assign the creation of a copy to that object itself.
+Now we can copy even the private properties.
+
+All we have to do is call the copy function in an object and that object is gonna create a deep copy of that object and return it.
+This is called prototype.
