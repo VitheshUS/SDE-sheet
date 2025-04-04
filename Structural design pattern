@@ -1,1 +1,26 @@
+ADAPTER:
+Adapter lets 2 objects with incompatible interface to colaborate with each other.
+Lets say we have a stock market data provider that provides data in XML format.
+And we have a stock market analyser that takes input in JSON format and displays visualization
+But these interface are incompatible right. 
+Here the adaptor comes to picture. Adaptor will make the communication possible.
 
+So lets consider we have to interfaces.
+
+Lets say we have round hole and we now need a round peg to cover it. Here we can determine if a peg can fit in or not just by checking the radius right.
+But instead of a round peg we now have a square peg. technically we can cover the round hole with a square peg as well right. But how do we determine this.
+So in this case we need an adaptor for this.
+This adaptor is wrapped around a square peg.
+
+The round hole was initially taking the round peg as a parameter and was determining if it can fit or not. But can accept a square peg and anyway we cant even determin the radius of the square right.
+Because the square contains the width not radius. But we can extract the circle from the square .it may not be absolute circle but we can still use it for covering the hole right.
+The square will fit a circle in it and we can determin this by extracting a acircle from it.
+But its not the job of round hole to extract this right.Round hole will get the instacnce and it will get the radius and will check it.
+
+So what we can do is anyway the round hole accepts roundPeg as a parameter right. We can now create an instance that implements the roundhole interface. What about the radius?
+We will have that parameter right.
+So what we can do is implement roundPeg and wrap squarePeg.
+So this adapter will get the squarepeg and it will then determin the radius. This adapter can passed as the pareamenter to roundhole because is implements roundPeg right.
+
+Check out the exmple here:-
+https://refactoring.guru/design-patterns/adapter/java/example
