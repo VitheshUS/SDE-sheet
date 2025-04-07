@@ -53,3 +53,17 @@ Dont write the concrete implementation in the main class itself.
 Instead seperate the business logic from it.
 
 *****************************************************************************************************************************************
+
+COMPOSITE:
+
+We can technically composite is a tree.
+The parent having many children objects and those children further has children objects.
+If some value of parent depends on the children and in the same way for children as well . Then we normally do a recursion and backtracking right.
+In the same way the parent will ask the children regarding that value. The class must have a method implemented that calculates this.
+And it that class has furhter children then that instance must ask that children as well.
+
+Eg:
+https://refactoring.guru/design-patterns/composite/java/example
+
+*****************************************************************************************************************************************
+
