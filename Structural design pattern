@@ -24,3 +24,32 @@ So this adapter will get the squarepeg and it will then determin the radius. Thi
 
 Check out the exmple here:-
 https://refactoring.guru/design-patterns/adapter/java/example
+
+
+So The client wont know about what the adadpter is actually using.
+The client wants an object A and it will the methods of that instance. But what we can do is we can create an adapter that extends the interface of
+object A. Now if we pass the instance of the adapter to the client it will still work because it extends the instance which the client is 
+expecting. Now the client will call the methods in the adapter. But this adapter is not actually working on Object A. Its actually has 
+a composite object B instance and the method is actually returing the data based on the object B.
+
+So for exampl if we have a car instance . the car calls move forward, left ,right ans so on. The car expects the object of type wheels.
+But if we use an adapter which extends wheels and has all the method implemented and give that to the car. The car will have no problem becuase
+its simply sending the signals to wheels right. It just wants its job to be done. No for the adapter it may not be using the wheels. It 
+only extends wheels but internally it may be using rocket bosters and wings. So when the car sends signal to move forward the adater may actually move forward
+but using rocket bosters and wings.
+
+****************************************************************************************************************************************
+
+BRIDGE:
+Bridge is nothing but encapsulating the business logic.
+Its very similar to open close principles.
+Its like a payament applicatin and payement methods where the applicaiton will have a composite property called payment method and it will have ans instance of the payement method.
+
+Lets have an example, 
+https://refactoring.guru/design-patterns/bridge/java/example
+
+its completly explained here.
+Dont write the concrete implementation in the main class itself.
+Instead seperate the business logic from it.
+
+*****************************************************************************************************************************************
