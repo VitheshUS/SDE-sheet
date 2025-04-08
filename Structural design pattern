@@ -67,3 +67,105 @@ https://refactoring.guru/design-patterns/composite/java/example
 
 *****************************************************************************************************************************************
 
+DECORATOR:
+Decorator can be considered as wraping and chaining.
+For example 
+
+Data -> Compress Data ->Encrypt Data -> Store Data
+
+Stored Data -> Decrypt -> Decompress -> Data
+
+Here we use decorators to perform a chaining of wraping.
+
+Example:- 
+  https://refactoring.guru/design-patterns/decorator/java/example
+
+This follows the principle of aggregation and interface and inheritance.
+Mainly- INTERFACE BASED POLYMORPHISM plays a strong role in this.
+
+public class Main
+{
+	public static void main(String[] args) {
+		DataSource dataSource=
+		new CompressDataSource(
+		    new EncryptDataSource(
+		        new FileDataSource("Vithesh.txt"));
+		    )
+		);
+	}
+}
+
+class DataSource{
+    public String read();
+    public String write(String data);
+}
+
+class FileDataSource implements DataSource{
+    String name;
+    StringBuilder sb;
+    public FileDataSource(String name){
+        this.name=name;
+        sb=new String StringBuilder();
+    }
+    public String read(){
+        return sb.toString();
+    }
+    public void write(String data){
+        sb.append(data);
+    }
+}
+
+class DataSourceDecorator implements DataSource{
+    private DataSource wrappee;
+    public DataSourceDecorator(DataSource dataSource){
+        this.wrappee=dataSource;
+    }
+    public String read(){
+        return wrappee.read();
+    }
+    public void write(String data){
+        wrappee.write(data);
+    }
+}
+
+class CompressDataSource extends DataSourceDecorator{
+    public CompressDataSource(DataSource dataSource){
+        super(dataSource);
+    }
+    public String read(){
+        String compressedData = super.read();
+        
+        String decompressedData=compressedData;
+        
+        return decompressedData;
+    }
+    public void write(String data){
+        String compressedData=data;
+        super.write(compressedData);
+    }
+}
+
+class EncryptDataSource extends DataSourceDecorator{
+    public EncryptDataSource(DataSource dataSource){
+        super(dataSource);
+    }
+    public String read(){
+        String encryptedData = super.read();
+        
+        String decryptedData=encryptedData;
+        
+        return decryptedData;
+    }
+    public void write(String data){
+        String encryptedData=data;
+        super.write(encryptedData);
+    }
+}
+
+If we are not following this there are other ways to achive wraping and chaining.
+One is following inheritence
+Other is simply creating an object that will perform the chaining for us.
+But both are very naive because inheritence can be modified in runtime and its tight coupling.
+Even using a different object to perform this is also very complex and may seem unnecessary.
+
+*************************************************************************************************************************************
