@@ -169,3 +169,22 @@ But both are very naive because inheritence can be modified in runtime and its t
 Even using a different object to perform this is also very complex and may seem unnecessary.
 
 *************************************************************************************************************************************
+
+FACADE:
+
+Facade is a layer of abstraction which makes our life a lot easier.
+Imagine we have an interface that performs a complex operation.
+So for example if we are converting a video to some resolution there are multiple operation that we must do .
+We must change resolution, aspect ratio, video format ,codec (compress or decompress the video to save space), bitrate
+But i dont want to these because i dont even know what these are.
+I just want to change the resolution.
+So the developer will change our lives by creating an faced for this.
+Means an interface which contains method that is easy to use by the client.
+This interface will be implemented and will all the different stages of work to change the resolution.
+
+So this is called Facade design pattern.
+
+Eg:
+https://refactoring.guru/design-patterns/facade/java/example
+
+***************************************************************************************************************************************
