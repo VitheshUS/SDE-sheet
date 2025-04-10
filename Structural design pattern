@@ -251,3 +251,61 @@ class Tree{
 eg:https://refactoring.guru/design-patterns/flyweight/java/example
 
 **********************************************************************************************************************************
+
+
+PROXY:
+Proxy is an object between the client and the real object.
+The client will send the request to the proxy thing that its the real object. Because of the proxy object also implements the interface
+that is implementd by the real object.
+So after the client passes the request to the proxy. The proxy process the request and does some work and it then passes the request to the
+real object.
+SO basically the proxy acts as a real object.
+The client send the request to the proxy thinking that it is the real object.
+The proxy will perform some operation and then send the request to the real object.
+
+Best example for proxy is Lazy loading.
+Like load the actual object only when it is accessed.
+
+Lets see an example
+
+public class Main
+{
+	public static void main(String[] args) {
+		IImage image=ProxyImage("fileName");
+		//The image is not loaded into the memory yet.
+		
+		image.displayImage(); //Now it gets displayed
+	}
+}
+
+class IImage{
+    void displayImage();
+}
+
+class RealImage implements IImage{
+    String fileName;
+    String IFile;
+    RealImage(String fileName){
+        this.fileName=fileName;
+        LoadFromDisk();
+    }
+    void displayImage(){
+        System.out.println("RealImage");
+    }
+}
+
+class ProxyImage implements IImage{
+    RealImage realImage;
+    String fileName;
+    ProxyImage(String fileName){
+        this.fileName=fileName;
+    }
+    void displayImage(){
+        if(realImage == null){
+            realImage=new RealImage(fileName);
+        }
+        realImage.displayImage();
+    }
+}
+
+*****************************************************************************************************************************************
