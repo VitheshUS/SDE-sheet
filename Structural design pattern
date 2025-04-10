@@ -188,3 +188,66 @@ Eg:
 https://refactoring.guru/design-patterns/facade/java/example
 
 ***************************************************************************************************************************************
+
+FLYWEIGHT:
+If an object contains shared and immutable properties then those properties are called as intrinsic property.
+The property that are specfic for an object and are mutable then they are extrinsic property.
+
+So when we are creating a game there are many objects that we must create right.
+So out of those objects there will be many objects that share common proprties and that may persist its state throught out the process lifecycle.
+For examole trees in games.
+So lets say we have to create more that 1000 trees in an area in that game.
+But all those objects share same property but the only difference is its coordinates.
+
+So what we can do is create an object for this shares property.
+and keep it as a composite object in trees.
+
+This will greatly reduce the RAM usage.
+public class Main
+{
+	public static void main(String[] args) {
+		TreeFactory treeFactory=new TreeFactory();
+		
+		//Now we can create any type of tree any number of times
+	}
+}
+
+class TreeFactory{
+    Map<String,TreeType>treeMap=new HashMap<>();
+    
+    public Tree createTree(int x,int y,String name,String color,String texture){
+        String key=name+"-"+color+"-"+texture;
+        
+        if(!treeMap.containsKey(key)){
+            TreeType newTreeType=new TreeType(name,color,texture);
+            treeMap.put(key,newTreeType);
+        }
+        
+        return new Tree(x,y,newTreeType);
+    }
+}
+
+class TreeType{
+    String name;
+    String color;
+    String texture;
+    public TreeType(String name,color,texture){
+        this.name=name;
+        this.color=color;
+        this.texture=texture;
+    }
+}
+
+class Tree{
+    int x,y;
+    TreeType treeType;
+    public Tree(int x,int y,TreeType treeType){
+        this.x=x;
+        this.y=y;
+        this.treeType=treeType;
+    }
+}
+
+eg:https://refactoring.guru/design-patterns/flyweight/java/example
+
+**********************************************************************************************************************************
