@@ -72,4 +72,12 @@ public class UserAuthorizationHandler extends Handler {
 We can check the implementaion in 
 https://refactoring.guru/design-patterns/chain-of-responsibility/java/example
 
+
+Every handler must have a link to the next handler.
+Its just like a linked list.
+There will be one abstract class which will be extended by all these handlers.
+So all these handlers know what to call.they will call that one method of that handler.
+Within the concrete implementation of that handler. we can perform anu operation and have any number of methods. provided the starting and the main method is the implementation of that abstract 
+method.
+
 ************************************************************************************************************************************************************************************
