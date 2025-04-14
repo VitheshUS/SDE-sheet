@@ -1,0 +1,9 @@
+Authentication: Authentication basically tells "Who are you?"
+Grants access based on identity
+
+Authorixation: Authorization basically tells "What are you allowed to do?"
+Grants permission based on roles.
+
+Hence Authorization comes after authentication.
+
+******************************************************************************************************************************************************************************************
