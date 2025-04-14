@@ -3,6 +3,8 @@ Chain of resposibility is a design pattern where we create a chain of handlers a
 This is chain of resposibility.
 One good example is authentication.
 
+Also just imagine about a linked list. where each of the handler are linked using a link.
+
 Authentication -> Authorization -> Validation -> Caching -> .......
 
 So basically a chain of handlers.
