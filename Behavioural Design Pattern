@@ -81,3 +81,53 @@ Within the concrete implementation of that handler. we can perform anu operation
 method.
 
 ************************************************************************************************************************************************************************************
+
+COMMAND:
+Command design pattern creates a middle man between the  client and the server.
+For example in a restraunt we have a customer,waiter, and a cook.
+The client will not directly communitcate with the cook and tell him to cook. But he will tell the waiter that he wants something.
+So our main focus here is seperation of concern.
+
+public class Main
+{
+	public static void main(String[] args) {
+		Ligt light=new Light();
+		ICommand command=new LightCommand(light);
+		Remote remote=new Remote(command);
+
+		remote.pressButton();
+	}
+}
+
+interface ICommand {
+	public void execute();
+}
+
+class Remote {
+	public ICommand command;
+	public void pressButton() {
+		command.execute();
+	}
+}
+
+class LightCommand extends Command {
+	private Light light;
+	public LightCommand(Light light) {
+		this.light=light;
+	}
+	public void execute() {
+		light.toggle();
+	}
+}
+
+class Light {
+	private boolean lightFlag;
+	public void toggle() {
+		lightFlag=!lightFlag;
+	}
+}
+
+Command design pattern itself is still not dynamic at runtime.
+So its usually combined with factories and if the type of object tp be created is loaded from any config files.
+
+***************************************************************************************************************************************************************************************
