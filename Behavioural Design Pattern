@@ -1,1 +1,73 @@
 CHAIN OF RESPONSIBILITY:
+Chain of resposibility is a design pattern where we create a chain of handlers and after completing the operation the handler will send the response to the next handler.
+This is chain of resposibility.
+One good example is authentication.
+
+Authentication -> Authorization -> Validation -> Caching -> .......
+
+So basically a chain of handlers.
+But all the handlers must implement the same interface and have one execute method. so that we can compose the chain at run time. And avoid tight coupling.
+
+So bascilly we will create a main interface and it will have a function called checkNext and we will have an abtract class which will implemt this interface.
+This class will have the methods that are common to all other handlers.
+Then we have a concrete handler that will extend this abstract class and will implement this methods.
+Or we can also remove the interface and just use the abstract class as the referenec for the handlers.
+
+Eg:
+public class Main
+{
+	public static void main(String[] args) {
+		//can do a parent to child chain
+		Server server=new Server();
+		Handler start=server.createChain(UserAuthenticationHandler,UserAuthorizationHandler);
+		boolean result=start.check("vithesh@gmail.com","zorojuro987"); // the operation will happen in the chain
+	}
+}
+public class Server {
+	public Handler createChain(Handler start,Handler... handlers) {
+	    Handler head=start;
+	    for(Handler handler:handlers){
+	        head.next=handler;
+	        head=handler;
+	    }
+	    
+	    return head;
+	}
+	
+	public boolean start(String email,String password){
+	    return start.check(email,password);
+	}
+
+}
+
+public abstract class Handler {
+	private Handler next;
+
+	public abstract boolean check(String email,String password);
+
+	public boolean checkNext(String email,String password) {
+		if(next==null)return true;
+		else return next.check(email,password);
+	}
+}
+
+public class UserAuthenticationHandler extends Handler {
+	public boolean check(String email,String password) {
+		//check for authentication
+
+		return checkNext(email,password);
+	}
+}
+
+public class UserAuthorizationHandler extends Handler {
+	public boolean check(String email,String password) {
+		//Check for Authorization
+
+		return checkNext(email,password);
+	}
+}
+
+We can check the implementaion in 
+https://refactoring.guru/design-patterns/chain-of-responsibility/java/example
+
+************************************************************************************************************************************************************************************
