@@ -1,0 +1,32 @@
+Delegates:
+We apply behaviou abstraction and polymorphism right.
+Like how we have an interface and multiple other objects implement that interface and we use that interface as the reference type.
+Similarly we use delegate to store a method. We use this as a call back function which is similar to lambda function.
+
+public delegate void CallBack(String message); 
+Now we can use callBack as a datatype for all the methods that have similar signatures.
+
+Eg:
+public delegate void CallBack(string message);  // ✅ Delegate declaration
+
+public class Notifier
+{
+    public void Notify(string message)
+    {
+        Console.WriteLine(message);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Notifier notifier = new Notifier();
+
+        // Use method group to assign the method
+        CallBack handler = notifier.Notify;
+
+        // Invoke the delegate
+        handler("Hi");
+    }
+}
