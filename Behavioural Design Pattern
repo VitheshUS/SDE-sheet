@@ -131,3 +131,118 @@ Command design pattern itself is still not dynamic at runtime.
 So its usually combined with factories and if the type of object tp be created is loaded from any config files.
 
 ***************************************************************************************************************************************************************************************
+
+ITERATOR:
+So basically iterator is similar to the iterator that we use in the collections. Here in each of these collections they return a new iterator 
+that is used to iterate the collection.
+
+But we dont usually use the iterators.
+
+But the main purpose of the iterators is the seperate the internal structure of the list.
+
+The iterator will only tell if there is any remaining element in the list. IF there is any element then we can traverse the list.
+
+Now according to me there is one more example.
+We can combine the iterator with the factory method to create a dynamic multy purpose data structure.
+
+Lets say we have a collection that stores the element and we want to traverse the collection using the dfs. But inorder to do that we have to
+manually write the logic for that. Instead of that we can assign the traversal the colleciton to a seperate object.4
+
+We can create a collection that can store the element. Now if we want that to follow dfs traversal then we can pass the parameter to that.
+So internally we will have an iterator object that can do a dfs. and this collection will return that iterator.
+
+In future if we want to change the iteratrion stratergy we can simply add a new.
+How do we do this. OPEN FOR EXTENSION AND CLOSED FOR MODIFICATION.
+THIS can achived using interface polymorphism.
+
+So basically the iterator is an iterface that has hasNext() and next() method.
+Then we have a concrete class that implements this interface and traversal. How the travesal happens is upto the concrete class.
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+    public static void main(String[] args) throws java.lang.Exception
+    {
+        Integer[]arr={1,2,3,4,5,6,7,8,9};
+        ArrayList list = new ArrayList<Integer>(arr);
+        
+        Iterator iterator=list.getIterator("BFS");
+        
+        while(iterator.hasNext())
+            System.out.print(iterator.next()+" ");
+
+    }
+}
+
+class ArrayList < T > {
+    T[] array;
+    public ArrayList(T[]array) {
+        this.array = array;
+    }
+
+    public Iterator getIterator(String itertorType) {
+        switch (itertorType) {
+            case "BFS":
+                return new BfsIterator < T > (array);
+            case "DFS":
+                return new DfsIterator < T > (array);
+            default:
+                return null;
+        }
+    }
+}
+
+interface Iterator < T > {
+    boolean hasNext();
+    T next();
+}
+
+class DfsIterator < T > implements Iterator < T > {
+    private T[] array;
+    private int currentPositon;
+    DfsIterator(T[] array) {
+        this.array = array;
+        currentPositon = 0;
+    }
+
+    public boolean hasNext() {
+        return currentPositon < array.length;
+    }
+
+    public T next() {
+        // We can write the further logic to make the traversal to follow dfs
+        if (hasNext())
+            return array[currentPositon++];
+        else
+            return null;
+    }
+}
+
+class BfsIterator < T > implements Iterator < T > {
+    private T[] array;
+    private int currentPositon;
+    BfsIterator(T[] array) {
+        this.array = array;
+        currentPositon = 0;
+    }
+
+    public boolean hasNext() {
+        return currentPositon < array.length;
+    }
+
+    public T next() {
+        // We can write the further logic to make the traversal to follow BFS
+        if (hasNext())
+            return array[currentPositon++];
+        else
+            return null;
+    }
+}
+
+here i have created a class and i have also created a iterators. I have loosly coupled the traversing and storing of the data here.
+This is the main use iterator.
+
+*************************************************************************************************************************************
