@@ -263,3 +263,31 @@ The tower will get the message and it will do all the necessary analysis and dec
 
 Using a mediator will remove tight coupling and we can reuse the components.
 The main goal of mediator is loose coupling and single responsibility principle.
+
+Example:
+https://refactoring.guru/design-patterns/mediator/java/example
+
+interface IMediator{
+//write all the methods which will be called by other components
+}
+
+class concreteImplementation implements IMediator{
+//Implement the interface
+}
+
+
+now create multiple components like buttons,search bar or any other components
+
+class Button{
+private IMediator mediator;
+//Now access the nexessary methods using the mediator.
+}
+
+the componet has the access to the mediator.
+The mediator has access to the components.
+
+There is a 2 way communication.
+
+Now we can reuse the components.
+
+***************************************************************************************************************************************************************************************
