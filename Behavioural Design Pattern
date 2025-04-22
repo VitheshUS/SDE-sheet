@@ -245,4 +245,21 @@ class BfsIterator < T > implements Iterator < T > {
 here i have created a class and i have also created a iterators. I have loosly coupled the traversing and storing of the data here.
 This is the main use iterator.
 
-*************************************************************************************************************************************
+************************************************************************************************************************************* 
+
+MEDIATOR:
+Mediator by the name suggest is like a mediator that acts as a middle man between 2 or more components.
+On component must focus on what is must do.
+Communicating with the other component and doing the operation is not its work.
+
+For example a button. Its duty is getting clicked and telling someone that it has been clicked. But it shouldn't do some other work like validation. So here comes the mediator.
+Mediator is a middle man that does all these work.
+THe button will tell the mediator that it has been clicked. The mediator know what it must do when that button has been clicked and it does that work.
+
+General example:
+Lets say we have an helicoptor,jet and a plane. They must communicate with each other and decide who is going to use the runway. But the communication between them must not be direct.
+There must be a mediator. Here its the tower. All the aircrafts will tell the tower that they want to land. If the runway is free or not is decidede by the tower. not the aircraft.
+The tower will get the message and it will do all the necessary analysis and decide who will land first and then send the necessary signal to the aircrafts. This is the mediator.
+
+Using a mediator will remove tight coupling and we can reuse the components.
+The main goal of mediator is loose coupling and single responsibility principle.
