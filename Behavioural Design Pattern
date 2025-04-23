@@ -305,3 +305,113 @@ We are not letting other object create the copy of some other object.
 Because other object may not be able to access the private property of some other object and hence we cant create the copy of that object.
 
 This is like a prototpye right.
+
+One more point. Here creating a copy means that we are creating a snapshot. and storing it.
+
+So for exmample we have a client, editor and memento object.
+Here memento object is responsible for storing the snapshot of the editor.
+
+But the editor has access to the memento's snapshot storing data structure and the memento has access to editors getCopy method and nothing else.
+Apart from this no other object has access to these objects directly.
+
+public class Main
+{
+	public static void main(String[] args) {
+		Editor editor=new Editor();
+		
+		editor.write("Hi my name is Vithesh");
+		editor.save();
+		editor.printDocument();
+		
+		editor.write("-State 1");
+
+		editor.printDocument();
+		
+		editor.undo();
+		
+		editor.printDocument();
+	}
+}
+
+class History<T>{
+    Stack<T>history;
+    public History(){
+        history=new Stack<>();
+    }
+    
+    public void saveHistory(T snapShot){
+        history.push(snapShot);
+    }
+    
+    public T getLastSaved(){
+        if(!history.isEmpty())
+            return history.pop();
+        return null;
+    }
+}
+
+class DocumentMemento{
+    String content;
+    public DocumentMemento(String content){
+        this.content=content;
+    }
+    
+    public String getSavedContent(){
+        return this.content;
+    }
+}
+
+class Document{
+    private String content;
+
+    public Document(String content){
+        this.content=content;
+    }
+    
+    public String getContent(){
+        return this.content;
+    }
+    
+    public void appendContent(String content){
+        this.content=this.content+content;
+    }
+    
+    public DocumentMemento createMemento(){
+        return new DocumentMemento(this.content);
+    }
+    
+    public void restoreFromMemento(DocumentMemento memento){
+        this.content=memento.getSavedContent();
+    }
+}
+
+class Editor{
+    private Document document;
+    private History<DocumentMemento> history;
+    
+    public Editor(){
+        this.document=new Document("");
+        this.history=new History();
+    }
+    
+    public void printDocument(){
+        System.out.println("Current state: "+document.getContent());
+    }
+    
+    public void write(String content){
+        document.appendContent(content);
+    }
+    
+    public void save(){
+        history.saveHistory(document.createMemento());
+    }
+    
+    public void undo(){
+        DocumentMemento documentMemento=history.getLastSaved();
+        if(documentMemento!=null)
+        document.restoreFromMemento(documentMemento);
+    }
+}
+
+Here we have created a history , documentMemento,document and an editor for abstraction.
+Here we are able to save the state and undo the current state right.
