@@ -1,0 +1,8 @@
+Interface:
+Interface is a means of communication.
+
+Lets say we have an object1 that wants to some operation on another object2.
+The object1 shouldn't have complete access to object2. But few methods only. Here comes the power of interface.
+We can create an interface and make object2 implement that interface. Now the we can use this interface as a datatype in object2.
+Now when object1 tries to access the object2 using the interface variable. It can only call the methods declaired in that interface.
+So here we are providing a means for communication using this interface.
