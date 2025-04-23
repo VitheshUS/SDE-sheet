@@ -291,3 +291,17 @@ There is a 2 way communication.
 Now we can reuse the components.
 
 ***************************************************************************************************************************************************************************************
+
+MEMENTO:
+Memento basically means that we are storing the history.
+The best example is the editor. Where we can revert back to the previous state of that editor.
+Here we store the history of the state so that we can revert back to the previous state.
+
+There is one more thing we must keep in mind. Here when we refer to storing the state means that we are creating the copy of the current state and then we are 
+storing them.
+Who is creating the copy of the state? We are assigning that job to that state itself.
+The Owner itself is responsible for creating the copy of itself.
+We are not letting other object create the copy of some other object.
+Because other object may not be able to access the private property of some other object and hence we cant create the copy of that object.
+
+This is like a prototpye right.
