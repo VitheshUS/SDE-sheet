@@ -423,3 +423,90 @@ CareTaker: This is an object that stores the states.We can push the new state to
 Client / Application: User friendly abstraction to work with the originator.
 
 **************************************************************************************************************************************
+
+OBSERVER:
+We already know this concept of subscribing and obersving.
+
+There are a bunch of listeners that want to listen to the emitters.
+And the emitters can't send the notification to all the listerners right.
+Only the listernrs that have subscribed to a particular event must react get the notification.
+
+The listerners will implement an interface which must have an update method. Using this method the listenera will get the update.
+There is also an EventManager that will have a map list which will store the the type of event and all the listeners that are listening to that event.
+
+public class Main
+{
+	public static void main(String[] args) {
+		Editor editor=new Editor();
+		
+		IListener logListener=new Email();
+		IListener EmailListener=new Logger();
+		
+		editor.eventManager.subscribe("open",logListener);
+		editor.eventManager.subscribe("save",logListener);
+		
+		editor.eventManager.subscribe("save",EmailListener);
+		
+		editor.open();
+		editor.save();
+	}
+}
+
+interface IListener{
+    public void update(String event);
+}
+
+class Editor{
+    public EventManager eventManager;
+    public Editor(){
+        eventManager=new EventManager();
+    }
+    
+    public void save(){
+        eventManager.notify("save","document has been saved");
+    }
+    
+    public void open(){
+        eventManager.notify("open","document has been opened");
+    }
+}
+
+class EventManager{
+    Map<String,ArrayList<IListener>>subscribers;
+    
+    public EventManager(){
+        subscribers=new HashMap<>();
+    }
+    
+    public void subscribe(String event,IListener listener){
+        if(!subscribers.containsKey(event))
+            subscribers.put(event,new ArrayList<>());
+        
+        subscribers.get(event).add(listener);
+    }
+    
+    public void unSubscribe(String event,IListener listener){
+        if(subscribers.containsKey(event))
+            subscribers.get(event).remove(listener);
+    }
+    
+    public void notify(String eventName,String event){
+        if(subscribers.containsKey(eventName))
+            for(IListener listeners:subscribers.get(eventName))
+                listeners.update(event);
+    }
+}
+
+class Logger implements IListener{
+    public void update(String event){
+        System.out.println("Logging: "+event);
+    }
+}
+
+class Email implements IListener{
+    public void update(String event){
+        System.out.println("Sending Email: "+event);
+    }
+}
+
+*****************************************************************************************************************************************************************************************
