@@ -415,3 +415,11 @@ class Editor{
 
 Here we have created a history , documentMemento,document and an editor for abstraction.
 Here we are able to save the state and undo the current state right.
+
+The key aspects are:
+Originator: The current state. It is the instane that displays the current state and it can also create and instance of its current state and return it.
+Memento: These are the states of the originator. The originator encapsulates its state inside the memento. We can further add more metadata if we want.
+CareTaker: This is an object that stores the states.We can push the new state to this or get the last state.
+Client / Application: User friendly abstraction to work with the originator.
+
+**************************************************************************************************************************************
