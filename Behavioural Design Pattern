@@ -513,4 +513,14 @@ class Email implements IListener{
 eg:
 https://refactoring.guru/design-patterns/observer/java/example
 
+So basically we need a bunch of listeners who implement a commone interface with the update method.
+Then we need an EventManager that will store all these listerner and their subscription in a HashMap.
+The hasmap will have the event name as a key and an arraylist that will store all the listeners in an arraylist.
+The evenet manager will also have a subsribe an unsubscribe which is used to add the listeners in the map.
+
+Now subscribing and unsubscribing is upto us.
+
+Here in the above code I have created an editor which consists of an evenetManager and whenever an operation happens in the editor it will call the event Manager that something has happened.
+Now the eventManager will notify all the listeners about that particular event.
+
 *****************************************************************************************************************************************************************************************
