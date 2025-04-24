@@ -524,3 +524,24 @@ Here in the above code I have created an editor which consists of an evenetManag
 Now the eventManager will notify all the listeners about that particular event.
 
 *****************************************************************************************************************************************************************************************
+
+STATE:
+
+State design pattern is based on the state of an object.
+We already know the concept of finite state machine.
+Where in each state we will have a finite number of state to move into.
+Now we apply that same concept to to objects.
+
+For example lets say we have a document object.
+Now for each of those document we hace 3 states: Draft, Modereate,Published.
+
+Now based on some condition lets say,
+If an admin creates a Doument and a normal user creates a document.
+
+Now for a normal user He will create a document and he tries to publich it. Because he is a normal user the document will move to Moderate state.
+In the moderate state the document will be reviewed by the admin and then it will get published. If its rejected it will move back to the Draft state.
+If its approved then it will be published.
+After publishing , If the publish time limit expires then it will move back to Draft untill its modified or reviewed again.
+
+Now for the admin , He will create a document and now its in draft state. He will try to publish it. But now it will directly get published because he is an admin.
+So Now we can say that the state of an object can go in different direction based on some factors.
