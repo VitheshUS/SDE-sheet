@@ -560,4 +560,154 @@ If the player is in Ready state then click play will start playing the video.
 If the player is in playing state then the player will enter ready state.
 If the player is in lock state then the video will enter the ready state.
 
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
+class Codechef
+{
+    public static void main(String[] args) throws java.lang.Exception
+    {
+        List<String>playList=Arrays.asList("VVV.strong","Sway","Chery chery lady","Tum Kyu chale athe ho");
+        Player player=new Player(playList);
+        player.setPlayerState(new ReadyState(player));
+
+        player.play();
+        
+        player.playNext();
+        player.playPrev();
+        
+        player.lock();
+        
+        player.lock();
+        player.playNext();
+        player.playPrev();
+    }
+}
+
+class Player {
+    private State state;
+    private List < String > playList;
+    int currentIndex;
+
+    public Player( List < String > playList) {
+        this.playList = playList;
+        currentIndex = 0;
+    }
+    
+    public void setPlayerState(State state){
+        this.state=state;
+    }
+
+    public void play() {
+        state.onPlay();
+    }
+
+    public void lock() {
+        state.onLock();
+    }
+
+    public void playPrev() {
+        if (currentIndex > 0)
+            currentIndex--;
+
+        System.out.println("Playing " + playList.get(currentIndex));
+    }
+
+    public void playNext() {
+        if (currentIndex < playList.size() - 1)
+            currentIndex++;
+
+        System.out.println("Playing " + playList.get(currentIndex));
+    }
+}
+
+abstract class State {
+    protected Player player;
+
+    State(Player player) {
+        this.player = player;
+    }
+
+    public abstract void onPlay();
+    public abstract void onLock();
+    public abstract void playNext();
+    public abstract void playPrevious();
+}
+
+
+class LockState extends State {
+
+    public LockState(Player player) {
+        super(player);
+    }
+
+    public void onPlay() {
+        player.setPlayerState(new ReadyState(player));
+    }
+
+    public void onLock() {
+        System.out.println("Locked...");
+    }
+
+    public void playNext() {
+        System.out.println("Locked...");
+    }
+
+    public void playPrevious() {
+        System.out.println("Locked...");
+    }
+}
+
+class ReadyState extends State {
+
+    public ReadyState(Player player) {
+        super(player);
+    }
+
+    public void onPlay() {
+        player.setPlayerState(new PlayingState(player));
+        System.out.println("Playing");
+    }
+
+    public void onLock() {
+        player.setPlayerState(new LockState(player));
+        System.out.println("Locked");
+    }
+
+    public void playNext() {
+        player.playNext();
+    }
+
+    public void playPrevious() {
+        player.playPrev();
+    }
+}
+
+class PlayingState extends State {
+
+    public PlayingState(Player player) {
+        super(player);
+    }
+
+    public void onPlay() {
+        player.setPlayerState(new ReadyState(player));
+        System.out.println("Ready");
+
+    }
+
+    public void onLock() {
+        player.setPlayerState(new LockState(player));
+        System.out.println("Locked");
+    }
+
+    public void playNext() {
+        player.playNext();
+    }
+
+    public void playPrevious() {
+        player.playPrev();
+    }
+}
+
+*************************************************************************************************************************************
