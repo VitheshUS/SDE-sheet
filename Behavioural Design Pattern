@@ -545,3 +545,19 @@ After publishing , If the publish time limit expires then it will move back to D
 
 Now for the admin , He will create a document and now its in draft state. He will try to publish it. But now it will directly get published because he is an admin.
 So Now we can say that the state of an object can go in different direction based on some factors.
+
+So here lets consider a video player
+A video player can have 3 states that are Ready state,playing state and lock state
+
+So initially the player will be in ready state and then when we click play it will be in playing state and if we click play again now the 
+video will be in lock state. And now in lock state if we press play the video will start playing.
+
+Lets create an interface called state and then create multiple different states. 
+Now the video player is reacting purely based on the state its in.
+Based on the state for every opeation it will enter a new state.
+
+If the player is in Ready state then click play will start playing the video.
+If the player is in playing state then the player will enter ready state.
+If the player is in lock state then the video will enter the ready state.
+
+
