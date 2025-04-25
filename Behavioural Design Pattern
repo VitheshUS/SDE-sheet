@@ -715,3 +715,17 @@ class PlayingState extends State {
 }
 
 *************************************************************************************************************************************
+
+STRATERGY:
+
+So here we are dealing with multiple stratergies.
+So lets say we have a class Called traversal and it contains different traversal methods.
+Lets start with DFS, BFS, Djikstras etc. Infuture we decide to add more of those are have a different version of these algorithms.
+At one point of time the class will enormous. I will be very hard to manage.
+If there is some issue with some traversal then we have to edit the Traversal class itself.
+Event having a team work on that class will tough becuse of merge conflicts.
+Just becuase one traversal method broke, We have to touch the traversal Class that contains different traversal methods.
+
+The solution is seperate these stratergy and loose couple them form the main traversal Class.
+No we can deal with these traversal seperatly.
+Lets create different class for these traversals.
