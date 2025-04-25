@@ -729,3 +729,167 @@ Just becuase one traversal method broke, We have to touch the traversal Class th
 The solution is seperate these stratergy and loose couple them form the main traversal Class.
 No we can deal with these traversal seperatly.
 Lets create different class for these traversals.
+
+Here below i have written the payment stratergy 
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Payment payment=new Payment();
+		payment.setPaymentStrategy("CreditCard");
+		payment.makePayment(2000);
+	}
+}
+
+class Payment{
+    private IPayementStrategy paymentStrategy;
+    public void makePayment(int amount){
+        if(paymentStrategy!=null){
+            paymentStrategy.collectPaymentDetails();
+            paymentStrategy.pay(amount);
+        }
+    }
+    
+    public void setPaymentStrategy(String strategy){
+        PaymentStrategyFactory factory=new PaymentStrategyFactory();
+        IPayementStrategy choosenStrategy=factory.getPaymentStrategy(strategy);
+        this.paymentStrategy=choosenStrategy;
+    }
+}
+
+class PaymentStrategyFactory{
+    public IPayementStrategy getPaymentStrategy(String strategy){
+        switch(strategy){
+            case "PayPal":return new PayByPayPal();
+            case "CreditCard":return new PayByCreditCard();
+            default:return null;
+        }
+    }
+}
+
+interface IPayementStrategy{
+    public void pay(int amount);
+    public void collectPaymentDetails();
+}
+
+class PayByPayPal implements IPayementStrategy{
+    private String userName;
+    private boolean isSignedIn;
+    
+    public void collectPaymentDetails(){
+        Scanner s=new Scanner(System.in);
+        System.out.println("Enter the UserName");
+        userName=s.nextLine();
+
+        //Do some database check and verify the isSignedI
+        isSignedIn=true;
+    }
+    
+    public void pay(int amount){
+        if(isSignedIn)
+        //Do some operations and the deduct the amount using the username and password
+        System.out.println(userName+": Transaction successfull using paypal "+amount);
+        else System.out.println("Transcation failed");
+    }
+}
+
+class PayByCreditCard implements IPayementStrategy{
+    private String creditCardDetails;
+    private boolean isCreditCardVerified;
+    
+        public void collectPaymentDetails(){
+        Scanner s=new Scanner(System.in);
+        System.out.println("Enter the creditCard details");
+        String creditCardDetails=s.nextLine();
+        
+        //Do some database check and verify the isSignedI
+        isCreditCardVerified=true;
+    }
+    
+    public void pay(int amount){
+        if(isCreditCardVerified)
+        //Do some operations and the deduct the amount using the username and password
+        System.out.println("Transaction successfull using a creditcard "+amount);
+        else System.out.println("Transcation failed");
+    }
+}
+
+Factory class is not necessary here. It may b flexible is adds a leyer of complexity.
+
+Define the family of strategies. But we shouldn't put them all inside the context class.
+So the key idea is to seperate the strategeies and create seperate class for that strategy.
+Make the strategy interchangable inside the context class.
+*****************************************************************************************************************************************
+
+
+TEMPLATE METHOD:
+
+Template defines the skeleton strcuture of any object.
+It has predefined methods and the way in which they are processed. 
+Its an abstract class.
+The class is just like a blueprint like an interface but here the methods are already implemented. There as the skeleton is abstract we cant 
+create instance of that class.
+But we can create instance of the class that extends it.
+Lets we have a different implementation for that mathod.
+Now it also gives us options to override that method.
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Brewer brewer1=new CoffeeBrewer();
+		Brewer brewer2=new TeaBrewer();
+		
+		brewer1.start();
+		brewer2.start();
+	}
+}
+
+abstract class Brewer{
+    
+    public void start(){
+        BoilWater();
+        brew();
+        addCondiments();
+        pourIntoCup();
+    }
+    
+    public void BoilWater(){
+        //Boil the water
+        System.out.println("Boiling water");
+    }
+    
+    public abstract void brew();
+    public abstract void addCondiments();
+    
+    public void pourIntoCup(){
+        System.out.println("Pouring into a cup");
+    }
+}
+
+class CoffeeBrewer extends Brewer{
+    public void brew(){
+        System.out.println("Brewing coffee");
+    }
+    public void addCondiments(){
+        System.out.println("Adding condiments to coffee");
+    }
+}
+
+class TeaBrewer extends Brewer{
+    public void brew(){
+        System.out.println("Brewing Tea");
+    }
+    public void addCondiments(){
+        System.out.println("Adding condiments to Tea");
+    }
+}
+
+here the steps are already defined and the way in which they are processed are also defined.
+But we also must give the libery to the extending objects to run the method in their way by overring it.
+The basically we are giving a template that the class can use or if they want they can mofify that methods.
+
+There is also a HOOk method. Which means that the defination is already given but the subclass can override that method and have their way.
+
+******************************************************************************************************************************************
