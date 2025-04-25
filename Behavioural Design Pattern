@@ -574,14 +574,14 @@ class Codechef
 
         player.play();
         
-        player.playNext();
-        player.playPrev();
+        player.getState().playNext();
+        player.getState().playPrevious();
         
         player.lock();
         
         player.lock();
-        player.playNext();
-        player.playPrev();
+        player.getState().playNext();
+        player.getState().playPrevious();
     }
 }
 
@@ -597,6 +597,10 @@ class Player {
     
     public void setPlayerState(State state){
         this.state=state;
+    }
+    
+    public State getState(){
+        return state;
     }
 
     public void play() {
