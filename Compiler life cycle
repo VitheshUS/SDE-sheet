@@ -1,0 +1,39 @@
+Compilation:
+After we write the code the compiler converts the code into bytecode. We can understand the bytecode because the bytecode is representation of you codes logic. 
+Its not specific to OS architecture.
+
+OS: Main manager of the computer. Handles communication between the hardwares and the program.
+CPU: Is the brain of the computer which performs the operations and is a hardware managed by the OS.
+
+CPU is executes the instruction and is very fast but its dumb. The OS is the main master mind. who creates the instructions and schedules and loads it to the memory.
+The CPU reads this instructiona and then executes it.
+
+Data segments:
+This contains static data,or constants that remain throught out the lifecycle of the program.
+
+Text segments:
+It contains the actual executable code which is a read only memory.
+
+Stack memory:
+Every thread will have its own stack memory.
+The stack memory will contains frames for the methods its executing. the thread will be executing the method which is in the top of the stack.
+So initiall in java the static main method frame is in the stack and it will be executing that.
+The frame will store object references(Not the actual object) and variables and function calls.
+When a new method is called inside the current method then a new frame is created and is pushed into the stack. the frame will be containing the variables, paramenters return address and some other data.
+After the execution is completed the frame is poped from the stack and using the return address the thread will start execution from where it left.
+The thread is not executin the frame but the executable code and is storing the data in the stack frame.
+
+so now what happens is. the cpu will start executing the machine code.
+based on the instructions provided by the jvm it will create memories to handle the lifecycle.
+now thread is a smallest unit of a cpu. Cpu will allocate stack memory to these thread when its executing the machine code.
+now when a funciton is called a frame is created and stores in the stack memory where it manages the data in that method.
+
+Heap memory:
+Heap memory stores dynamically allocated data. 
+When we create an object using the new operator then that object will will be stored in the heap memory and the reference to that object will be stored in the stack frame.
+Unlike stack memory the heap memory is not cleaned when the function ends.
+garbage collector is responsible for cleaning the heap memory.
+
+Each thread will have a common heap memory.
+So 2 or more thread can access the same object. So we must be careful regarding race condition.
+Race condition is where multiple threads try to change the object and which will result in inconsistant data ad unexpected behaviour.
