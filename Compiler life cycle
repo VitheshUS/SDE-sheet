@@ -37,3 +37,7 @@ garbage collector is responsible for cleaning the heap memory.
 Each thread will have a common heap memory.
 So 2 or more thread can access the same object. So we must be careful regarding race condition.
 Race condition is where multiple threads try to change the object and which will result in inconsistant data ad unexpected behaviour.
+
+We have garbage collectors that free up the heap memory. The garbage collectors runs once in a while depending upon factors like interval ,heap size.
+It uses a concept of reference counting where if the reference if an object is 0 then it is removed. But again it dosent exactly use the concept of reference counting because of cyclic reference.
+2 object point each othere which will lead to them staying in the heap memory forever and leaking memory.
