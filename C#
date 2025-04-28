@@ -30,3 +30,24 @@ class Program
         handler("Hi");
     }
 }
+
+*******************************************************************************************************************************
+
+Just like java even c# generate something like a bytecode. But its not actually called a byte code.
+Here we call is as an INTERMEDIATE LANGUAGE (bytecode of java)
+the file will be a .dll or .exe file.
+
+I java we have JVM that runs these but in c# we have CLR (Common language Runtime)
+
+So the compiler is just a program. which when we want to trigger then the OS will load the compiler into the memory.
+The compiler will have a set of instructions.
+
+The OS will create all instrcuction , and all the metadata and and will load all these into the RAM along with compiler.
+The CPU will now fetch these instuctions and will execute the necessary instructions. the output will then be store in the memory.
+Now if we want to exectue the bytecode the OS will load the instructions into the RAM. now here we will use JVM which is also a set of program.
+Now the CPU will use these instructions to unbox the bytecode to machin code which can be directly executed by the CPU.
+
+Now lets speak about C#
+it has intermediate language instead of bytecode.
+CLR (Common language Runtime) instead oj JVM
+intermediate language is stored as .dll or exe file.
