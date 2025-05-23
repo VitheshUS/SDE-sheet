@@ -1,0 +1,17 @@
+So we know the database and SQL.
+So whenever we try to execute the SQL query. it is fst parsed and checked for syntax errors. optimised and compiled and an execution plan is created and then the query execution engine in
+the database executes that execution plan.
+So this is how SQL query works. Here everytime a sql query goes through these steps when we want to execute the query. even if the query is the same one. It wont be cached.
+
+So here comes the Stored procedure.
+The stored procedure are just like functions that recide in the database itself.
+Hence initially when we call the sp. it will pass through as the SQL but this time the execution plan in cached and reused every time. So all we have to do is pass the required parameters.
+
+The query execution engine is the one that execute the qxecution plan.
+
+ORMS:
+ORMS is an api that lets the users to interact with the database using object oriented code rather than an SQL query.
+ORMS is an api that lets us perform CRUD operation on the database with the means of classes and objects.
+The database entities are represented interms of classes and objects.
+It also provides us with some set of functions that we can use to build up the query. The query iteself is represented interms of an object.
+ORM will then convert this to an actual sql query. Later on Database takes the controll of this and returns the result which will then be converted into an object. and we can now use that.
