@@ -1,0 +1,15 @@
+The TLS hand shake happens when the data is transfered using HTTPS protocol for secure data transfer.
+
+The client will first have the domain name. so its first job is to get the IP address for that domain server.
+So the request is first sent to the DNS server. Then the DNS server checks if that domain is registered there. If yes then it will retrun the IP address of that domain.
+The cliend will recieve this response.
+No the client wants to make a https request right. SO inorder to do this a TLS handshake must be first performed.
+Becuase the data must be encrypted right.
+
+The client will first send a request to the server with some data.
+The server will respond with the public key and the type of encryption that must happen. Here a CA certificate is also involved.
+
+Now the client has the public key right.
+now the client will encrypt all the data that must be sent using the public key and that data is sent over the network.
+The server will recieve the request and now that is going to do some validation check. Like tampering check and others.
+Now the server will decrypt that using the private key. and this way the server will recieve the request.
