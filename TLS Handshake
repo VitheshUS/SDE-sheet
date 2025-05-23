@@ -10,6 +10,16 @@ The client will first send a request to the server with some data.
 The server will respond with the public key and the type of encryption that must happen. Here a CA certificate is also involved.
 
 Now the client has the public key right.
+
+Now we also require the session key that will be used for all the future communication.
+Now the client will generate a random number and it will encrypt that session key using the public key; the server will recieve the key and it will then decrypt it. now the both side will 
+have the session key.
+Now all the future communication will happen using this session key.
 now the client will encrypt all the data that must be sent using the public key and that data is sent over the network.
 The server will recieve the request and now that is going to do some validation check. Like tampering check and others.
 Now the server will decrypt that using the private key. and this way the server will recieve the request.
+
+
+THe browser is an application that handles all the sending and recieving of the request.
+TLS, encryption http-only cookies are all handled by the browser. Browser also has API like sandbox which restricts communication between different apps running in the same browser.
+Hiding the cookies and adding authorization header for a particular domain are handled by the browser itself;
