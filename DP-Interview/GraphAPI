@@ -1,0 +1,19 @@
+GraphAPI are REST apis provided by microsoft then lets us display and modify microsoft 365 services.
+We Use OAuth to login and here and the service provider is Microsoft.
+After we login we will have an access token and we include this access token in every graph api calls.
+
+After we include the access token in the header. The server check the access token and validate it.
+The server will check the access token with microsoft if its calid or not. It will check for expiration.
+After that the server will extract the user data and will the check for permissions.
+If the user is allowed to access that graph API then the response is sent back to user.
+
+OUTLOOK MAPPING:
+Here we are displaying and modifying services with the outlook.
+It mainly includes messages, calander events.
+We can retrieve messages in outlook as well as the events.
+A User can even have multiple calanders and he can set the primary calander for him.
+There are graph api that lets us fetch events from all calanders,primmary calander, A particular calander. And events between specific time ranges.
+So I have implemented this feature there where we display events.
+
+We have written the code in backend.
+We registered out backend app in AZURE and using the client ID we are adding and removing the events.
