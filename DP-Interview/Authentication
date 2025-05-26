@@ -1,1 +1,43 @@
+Authentication:Who are you?
+Authorzation:What are allowed to do?
 
+There are different types of authentication:
+
+Password based authentication:
+Where the user login into the applicatio using a simple password and username.
+The passowrd will be sent over the network using https protocol and the server wil then encrypt that passowrd using some salt it other encryption mechanism
+and will store both the user and their encrypted password along with the salt if used in the database.
+
+Multifactor authentication:
+Various authentication are followed combined in multifactor authentication.
+Like thing we know,things we have, things we are.
+Means it will have password based, OTP based and biometric validation combined.
+
+Token Based authentication:
+We use a token like JWT to sign into the application.
+These tokens are genereate on initial signins and are then stored in browsers HTTP-only cookies. They cant be accessed through javascript.
+The JWT token will have an expiration time aswell and we need a new token it the existing one expires.
+So here we may use refresh tokens if we dont want to login again and again. So thats why some servers also give a referesh tokens if we dont want to login againa and again.
+
+OAuth authentication:
+Here we are depeniding on other indentity providers like google or microsoft for indentity validation.
+Here the applicaiton will prompt us to login to google or microsoft.
+After we login the google will return a code to the user.
+Then the user will send the code to the backend.
+Now the backend will send that code to the identity provider to check if the user is the one who he is claiming to be. Then google will send the response with all the necessary user data.
+The server will now register the user if not registerd. Then the servers is going to return the JWT token back to the user.
+
+SSO logins:
+The SSO logins involves
+User
+Service provider
+Identity provider
+
+Different application may be using the same identity provider to create a session for the user.
+If the user has logged into the IdP through any one app. Then he can directly login through other app as well. without needing to follow a series of process for loggin in.
+
+When we try to login to the application  the app will refirect us to the IdP and after we login to that a session token will be sent to the SP.
+And the session is created and the user can now use that app.
+
+Not lets say that the user is loggin in to another app but that app is also using the same identity provider just like the previous one.
+So the app will send the client Id to the IdP. now the Identity server will return the session toke telling that the user is already logged in.
