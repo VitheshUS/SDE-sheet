@@ -1,1 +1,14 @@
+Microservices are services that can be developed,deployed,scalled,debugged seperatly. They are a part of the application that are seggregated and hence they run seperatly.
+Microservices are loosly coupled with another microservice and they communicate with each other through means of API calls.
+They are a really cood application for encapsulation.
 
+For example when we follow this architecture right. If one microfrontend goes down then it wont take down the whole application along with it.
+The best example for microfrontend is E-commerce websites.
+Where we can segregate the whole application into authentication & Authorixation service,Product service,Order Service,Coupon Service and much more based on our requirements
+
+So lets say the ordering service goes down. But just becuase of this the application must not go down because the users must still be able to see the 
+products thought they cant order it.
+
+It may impact the users a bit its still better that taking down the whole application.
+
+Thats why huge enterprise application follow this architecture.
