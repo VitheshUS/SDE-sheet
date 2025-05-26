@@ -1,0 +1,19 @@
+Indexing:
+We index columsn in the database so that the database can quickly access any record in the database. The indexing mechanism is very similar to a hashMap. where a unique hash is generated
+for each query and is stored in the memory. And again sometime people and most of the people get confused that the column must have unique values. But its not true. the column can have repeated values.
+and we still can do indexing for that record. Database implementation to handle this.
+
+So Indexing helps us to retrive the records faster and we can use it if some query has where,join,orderby, groupby.
+But there is one cache because. A querstion may arise as why we cant index everything if thats the case.
+Indexing will slow down the writing to the database. Thats why indexing is highlt used in read only database replicas.
+
+User Joins instead of subqueries.
+
+Do not use select * : We have to retrieve only the columns that we want.
+
+Use pagination and retrieve only the the necessary records from the database.
+
+Use appropirate datatypes. Try to maximise the usage of Integere and boolean where required because the string matching is a very expensive operation in all programing languages.
+
+Use percompiled queries like stored procedures. The stored procedure is compiled only once and the execution plan that is generated is automatically cached by the database and reused.
+Because a normal query will be parsed,checked,optimised,compiled and the execution plan will be generated each time. And it wont be cached in the database to be reused.
