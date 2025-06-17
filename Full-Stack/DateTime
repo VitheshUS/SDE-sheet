@@ -1,0 +1,2 @@
+Date.now(): this actually refers to the time in miliseconds.
+But most of the backend dosent accept time in miliseconds so we must convert the miliseconds to actual ISO datetime string
